@@ -1,0 +1,43 @@
+<div class="signUpForm">
+  <h1>Registrace týmu</h1>
+
+  <%= form_with scope: :team, local: true do |form| %>
+    <table class="signUpForm">
+      <tr>
+        <td><%= form.label :name, 'Název týmu' %></td>
+        <td colspan="2"><%= form.text_field :name %></td>
+      </tr>
+      <tr>
+        <td><%= form.label :phone, 'Telefon' %></td>
+        <td colspan="2"><%= form.text_field :phone %></td>
+      </tr>
+      <tr>
+        <td><%= form.label :password, 'Heslo' %></td>
+        <td colspan="2"><%= form.password_field :password %></td>
+      </tr>
+      <tr>
+        <td><%= form.label :player1_name, 'Hráč 1' %></td>
+        <td><%= form.text_field :player1_name, placeholder: 'Jméno' %></td>
+        <td><%= form.email_field :player1_email, placeholder: 'E-mail' %></td>
+      </tr>
+      <tr>
+        <td><%= form.label :player2_name, 'Hráč 2' %></td>
+        <td><%= form.text_field :player2_name, placeholder: 'Jméno' %></td>
+        <td><%= form.email_field :player2_email, placeholder: 'E-mail' %></td>
+      </tr>
+      <tr>
+        <td><%= form.label :player3_name, 'Hráč 3' %></td>
+        <td><%= form.text_field :player3_name, placeholder: 'Jméno' %></td>
+        <td><%= form.email_field :player3_email, placeholder: 'E-mail' %></td>
+      </tr>
+      <tr>
+        <td><%= form.label :player4_name, 'Hráč 4' %></td>
+        <td><%= form.text_field :player4_name, placeholder: 'Jméno' %></td>
+        <td><%= form.email_field :player4_email, placeholder: 'E-mail' %></td>
+      </tr>
+      <tr>
+        <td colspan="3"><%= form.submit 'Odeslat', data: { disable: true } %></td>
+      </tr>
+    </table>
+  <% end %>
+</div>

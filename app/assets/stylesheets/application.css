@@ -1,0 +1,96 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+html, body {
+    margin: 0 auto;
+    height: 100vh;
+}
+
+body {
+    color: #ffffff;
+    background-color: #000000;
+    font-family: Myriad Pro;
+}
+
+div {
+    border: 0px solid #ffff00;
+}
+
+.outer {
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+.logo {
+    margin: 20px;
+    height: 70px;
+}
+
+.main {
+    margin: 0 auto;
+    min-height: calc(100vh - 110px);
+}
+
+.menu {
+    margin: 0 auto;
+    float: left;
+    width: 200px;
+    height: 100%;
+    min-height: calc(100vh - 110px);
+}
+
+.content {
+    margin: 0 auto;
+    margin-left: 200px;
+    background-color: #222222;
+    min-height: calc(100vh - 110px);
+    padding: 20px;
+}
+
+a {
+    font-size: 20px;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/*
+.signUpForm {
+    display: table;
+    margin: auto;
+}
+
+.signUpForm td {
+    padding: 3px;
+}
+
+input {
+    margin: 0;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+}
+
+input[type="submit"] {
+    display: table;
+    margin: auto;
+}
+*/

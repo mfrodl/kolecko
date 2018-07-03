@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>iKolečko</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="outer">
+      <%= debug(params) %>
+      <div class="logo">
+        <%= link_to image_tag('logo.png'), root_path %>
+      </div>
+      <div class="main">
+        <div class="menu">
+          <ul>
+            <% if team_signed_in? %>
+              <li><%= link_to 'Odhlášení', destroy_team_session_path, method: :delete %></li>
+            <% else %>
+              <li><%= link_to 'Přihlášení', new_team_session_path %></li>
+            <% end %>
+            <li><%= link_to 'Registrace', new_team_registration_path %></li>
+            <li><%= link_to 'Pravidla', rules_path %></li>
+            <li><%= link_to 'Seznam týmů', teams_path %></li>
+            <li><%= link_to 'Šifry a řešení', puzzles_path %></li>
+            <li><%= link_to 'Výsledky', results_path %></li>
+          </ul>
+        </div>
+        <div class="content">
+         <p class="notice"><%= notice %></p>
+         <p class="alert"><%= alert %></p>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
