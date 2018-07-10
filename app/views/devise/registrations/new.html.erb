@@ -4,34 +4,37 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :name, 'Název týmu' %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "off" %>
+    <%= f.label :name, t(:team_name) %><br>
+    <%= f.text_field :name, autofocus: true, value: 'test' %>
+    <% resource.errors[:name].each do |error| %>
+      <div><%= "#{error}" %></div>
+    <% end %>
   </div>
 
   <div class="field">
-    <%= f.label :password, 'Heslo' %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.label :password, t(:password) %><br>
+    <%= f.password_field :password, value: 'password' %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation, 'Heslo znovu' %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.label :password_confirmation, t(:password_confirmation) %><br>
+    <%= f.password_field :password_confirmation, value: 'password' %>
   </div>
 
   <% for player in ['player1', 'player2', 'player3', 'player4'] %>
     <div class="field">
-     <%= f.label "#{player}_name".to_sym, 'Jméno hráče' %><br />
+     <%= f.label "#{player}_name".to_sym, t(:player_name) %><br>
       <%= f.text_field "#{player}_name".to_sym, value: player %>
     </div>
 
     <div class="field">
-      <%= f.label "#{player}_email".to_sym, 'E-mail' %><br />
+      <%= f.label "#{player}_email".to_sym, t(:email) %><br>
       <%= f.email_field "#{player}_email".to_sym, value: "#{player}@example.com" %>
     </div>
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit t(:sign_up_button) %>
   </div>
 <% end %>
 

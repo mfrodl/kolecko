@@ -1,0 +1,36 @@
+cs:
+  team_name: 'Název týmu'
+  password: 'Heslo'
+  password_confirmation: 'Heslo znovu'
+  remember_me: 'Zapamatovat přihlášení'
+  log_in: 'Přihlášení'
+  log_in_button: 'Přihlásit'
+  log_out: 'Odhlášení'
+  sign_up: 'Registrace'
+  sign_up_button: 'Zaregistrovat'
+  forgot_your_password: 'Zapomněli jste heslo?'
+  player_name: 'Jméno hráče'
+  email: 'E-mail'
+  rules: 'Pravidla'
+  teams: 'Seznam týmů'
+  puzzles_and_solutions: 'Šifry a řešení'
+  results: 'Výsledky'
+
+  errors:
+    format: '%{attribute} %{message}'
+
+  activerecord:
+    models:
+      team: 'Tým'
+    attributes:
+      team:
+        name: 'Název týmu'
+    errors:
+      template:
+        header:
+          one: '1 error prohibited this %{model} from being saved'
+          other: '%{count} errors prohibited this %{model} from being saved'
+        body: 'There were problems with the following fields:'
+      messages:
+        taken: 'již existuje'
+        record_invalid: 'Validation failed: %{errors}'

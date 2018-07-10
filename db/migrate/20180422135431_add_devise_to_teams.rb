@@ -4,7 +4,6 @@ class AddDeviseToTeams < ActiveRecord::Migration[5.1]
   def self.up
     change_table :teams do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
@@ -37,7 +36,7 @@ class AddDeviseToTeams < ActiveRecord::Migration[5.1]
       # t.timestamps null: false
     end
 
-    add_index :teams, :email,                unique: true
+    add_index :teams, :name,                 unique: true
     add_index :teams, :reset_password_token, unique: true
     # add_index :teams, :confirmation_token,   unique: true
     # add_index :teams, :unlock_token,         unique: true

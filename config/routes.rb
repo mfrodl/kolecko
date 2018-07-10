@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :teams, controllers: {
-    sessions: 'teams/sessions'
+    sessions: 'teams/sessions',
+    registrations: 'teams/registrations'
   }
 
   root 'main#index'

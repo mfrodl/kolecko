@@ -1,14 +1,14 @@
 class TeamsController < ApplicationController
-  def new
-  end
+  #def new
+  #end
 
-  def create
-    @team = Team.new(team_params)
-    @team.payed = false
+  #def create
+  #  @team = Team.new(team_params)
+  #  @team.payed = false
 
-    @team.save
-    redirect_to login_path
-  end
+  #  @team.save
+  #  redirect_to login_path
+  #end
 
   def show
   end

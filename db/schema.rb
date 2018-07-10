@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20180422135431) do
     t.string "player4_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -37,7 +36,7 @@ ActiveRecord::Schema.define(version: 20180422135431) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.index ["email"], name: "index_teams_on_email", unique: true
+    t.index ["name"], name: "index_teams_on_name", unique: true
     t.index ["reset_password_token"], name: "index_teams_on_reset_password_token", unique: true
   end
 

@@ -18,15 +18,15 @@
         <div class="menu">
           <ul>
             <% if team_signed_in? %>
-              <li><%= link_to 'Odhlášení', destroy_team_session_path, method: :delete %></li>
+              <li><%= link_to t(:log_out), destroy_team_session_path, method: :delete %></li>
             <% else %>
-              <li><%= link_to 'Přihlášení', new_team_session_path %></li>
+              <li><%= link_to t(:log_in), new_team_session_path %></li>
+              <li><%= link_to t(:sign_up), new_team_registration_path %></li>
             <% end %>
-            <li><%= link_to 'Registrace', new_team_registration_path %></li>
-            <li><%= link_to 'Pravidla', rules_path %></li>
-            <li><%= link_to 'Seznam týmů', teams_path %></li>
-            <li><%= link_to 'Šifry a řešení', puzzles_path %></li>
-            <li><%= link_to 'Výsledky', results_path %></li>
+            <li><%= link_to t(:rules), rules_path %></li>
+            <li><%= link_to t(:teams), teams_path %></li>
+            <li><%= link_to t(:puzzles_and_solutions), puzzles_path %></li>
+            <li><%= link_to t(:results), results_path %></li>
           </ul>
         </div>
         <div class="content">
