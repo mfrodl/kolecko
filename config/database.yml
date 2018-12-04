@@ -17,4 +17,4 @@ production:
   <<: *default
   database: kolecko
   username: kolecko
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  password: <%= ENV['KOLECKO_DATABASE_PASSWORD'] %>
