@@ -1,2 +1,8 @@
-<h1>Answers#index</h1>
-<p>Find me in app/views/answers/index.html.erb</p>
+<table>
+<% @answers.each do |answer| %>
+  <tr class="<%= answer.correct? ? 'correct' : 'incorrect' %>">
+    <td><%= answer.created_at.strftime '%H:%M:%S' %></td>
+    <td><%= answer.solution %></td>
+  </tr>
+<% end %>
+</table>

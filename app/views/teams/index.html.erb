@@ -1,10 +1,17 @@
+<h1>Seznam týmů</h1>
+<ul>
 <% @teams.each do |team| %>
-  <p><strong><%= team.name %></strong></p>
-  <p><strong><%= team.password %></strong></p>
-  <p><strong><%= team.phone %></strong></p>
-  <p><strong><%= team.payed %></strong></p>
-  <p><strong><%= team.player1_name %></strong></p>
-  <p><strong><%= team.player2_name %></strong></p>
-  <p><strong><%= team.player3_name %></strong></p>
-  <p><strong><%= team.player4_name %></strong></p>
+  <li>
+      <strong><%= team.name %></strong>
+      <%
+        players = [
+          team.player1_name,
+          team.player2_name,
+          team.player3_name,
+          team.player4_name,
+        ].reject(&:blank?)
+      %>
+      (<%= players.join(', ') %>)
+  </li>
 <% end %>
+</ul>

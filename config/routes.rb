@@ -16,9 +16,9 @@ Rails.application.routes.draw do
 
   scope(path_names: {new: 'nova'}) do
     resources :answers, path: 'odpovedi', only: [:index, :new, :create]
+    resources :puzzles, path: 'sifry', only: [:index]
   end
 
   get '/pravidla', to: 'pages#show', as: :rules, page: 'rules'
   get '/vysledky', to: 'pages#show', as: :results, page: 'results'
-  get '/sifry', to: 'pages#show', as: :puzzles, page: 'puzzles'
 end
