@@ -1,9 +1,6 @@
 class AnswersController < ApplicationController
-  before_action :normalize_input, only: [:create]
-
   def index
-    # TODO: Filter only answers for logged in team
-    @answers = Answer.all
+    @answers = Answer.where(team: current_team)
   end
 
   def new
@@ -12,10 +9,12 @@ class AnswersController < ApplicationController
 
   def create
     @answer = Answer.new(answer_params)
-    @puzzle = Puzzle.find_by(puzzle_params)
+    @puzzle = Puzzle.find_by(code: normalize(puzzle_params[:code]))
 
     if @puzzle
       @answer.puzzle = @puzzle
+      @answer.team = current_team
+
       if @answer.save
         check_solution
       else
@@ -28,24 +27,6 @@ class AnswersController < ApplicationController
     redirect_to new_answer_url
   end
 
-  def normalize_input
-    params[:answer][:solution] = I18n.transliterate(params[:answer][:solution])
-    params[:answer][:solution].downcase!
-
-    params[:puzzle][:code] = I18n.transliterate(params[:puzzle][:code])
-    params[:puzzle][:code].downcase!
-  end
-
-  def check_solution
-    @answer.correct = (@answer.solution == @puzzle.solution)
-
-    if @answer.correct?
-      flash[:success] = 'Správná odpověď'
-    else
-      flash[:alert] = 'Špatná odpověď'
-    end
-  end
-
   private
     def answer_params
       params.require(:answer).permit(:solution)
@@ -53,5 +34,20 @@ class AnswersController < ApplicationController
 
     def puzzle_params
       params.require(:puzzle).permit(:code)
+    end
+
+    def check_solution
+      @answer.correct =
+        normalize(@answer.solution) == normalize(@puzzle.solution)
+
+      if @answer.correct?
+        flash[:success] = 'Správná odpověď'
+      else
+        flash[:alert] = 'Špatná odpověď'
+      end
+    end
+
+    def normalize(string)
+      I18n.transliterate(string).upcase
     end
 end
