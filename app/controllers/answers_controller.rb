@@ -18,13 +18,13 @@ class AnswersController < ApplicationController
       if @answer.save
         check_solution
       else
-        flash[:alert] = @answer.errors
+        flash[:alert] = @answer.errors.full_messages.join('<br>')
       end
     else
       flash[:alert] = 'Neplatný kód stanoviště'
     end
 
-    redirect_to new_answer_url
+    redirect_to new_answer_path
   end
 
   private
