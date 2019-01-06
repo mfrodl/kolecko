@@ -1,0 +1,18 @@
+<h1>Žádost o nápovědu</h1>
+<table class="form">
+<%= form_for @hint_request, url: {action: 'create'} do |form| %>
+  <%= fields_for :puzzle, @hint_request.puzzle do |puzzle_fields| %>
+    <tr>
+      <td>Kód stanoviště:</td>
+      <td><%= puzzle_fields.text_field :code %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td>Poznámka:</td>
+    <td><%= form.text_field :note %></td>
+  </tr>
+  <tr>
+    <td><%= form.submit 'Odeslat' %></td>
+  </tr>
+<% end %>
+</table>

@@ -20,6 +20,7 @@
               <li><%= link_to t(:new_answer), new_answer_path %></li>
               <li><%= link_to t(:my_answers), answers_path %></li>
               <li><%= link_to t(:log_out), destroy_team_session_path, method: :delete %></li>
+              <li><%= link_to t(:hints), hint_requests_path %></li>
             <% else %>
               <li><%= link_to t(:log_in), new_team_session_path %></li>
               <li><%= link_to t(:sign_up), new_team_registration_path %></li>

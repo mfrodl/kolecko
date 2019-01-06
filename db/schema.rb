@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181223212420) do
+ActiveRecord::Schema.define(version: 20181230174043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,27 @@ ActiveRecord::Schema.define(version: 20181223212420) do
     t.bigint "team_id"
     t.index ["puzzle_id"], name: "index_answers_on_puzzle_id"
     t.index ["team_id"], name: "index_answers_on_team_id"
+  end
+
+  create_table "hint_requests", force: :cascade do |t|
+    t.bigint "team_id"
+    t.text "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "puzzle_id"
+    t.index ["puzzle_id"], name: "index_hint_requests_on_puzzle_id"
+    t.index ["team_id"], name: "index_hint_requests_on_team_id"
+  end
+
+  create_table "hints", force: :cascade do |t|
+    t.bigint "team_id"
+    t.bigint "hint_request_id"
+    t.string "text"
+    t.boolean "accepted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hint_request_id"], name: "index_hints_on_hint_request_id"
+    t.index ["team_id"], name: "index_hints_on_team_id"
   end
 
   create_table "puzzles", force: :cascade do |t|
@@ -65,4 +86,6 @@ ActiveRecord::Schema.define(version: 20181223212420) do
 
   add_foreign_key "answers", "puzzles"
   add_foreign_key "answers", "teams"
+  add_foreign_key "hint_requests", "puzzles"
+  add_foreign_key "hint_requests", "teams"
 end

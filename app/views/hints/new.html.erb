@@ -1,0 +1,13 @@
+<h1>Odeslat nápovědu</h1>
+<table class="form">
+<%= form_for @hint, url: {action: 'create'} do |form| %>
+  <%= form.hidden_field :hint_request_id, value: params[:id] %>
+  <tr>
+    <td>Text nápovědy:</td>
+    <td><%= form.text_field :text %></td>
+  </tr>
+  <tr>
+    <td><%= form.submit 'Odeslat' %></td>
+  </tr>
+<% end %>
+</table>

@@ -17,6 +17,9 @@ cs:
   results: 'Výsledky'
   new_answer: 'Odpovědět'
   my_answers: 'Moje odpovědi'
+  hints: 'Nápovědy'
+  request_hint: 'Požádat o nápovědu'
+  give_hint: 'Poslat nápovědu jinému týmu'
 
   errors:
     format: '%{attribute} %{message}'
@@ -27,6 +30,8 @@ cs:
     attributes:
       team:
         name: 'Název týmu'
+      hint:
+        text: 'Text nápovědy'
     errors:
       template:
         header:

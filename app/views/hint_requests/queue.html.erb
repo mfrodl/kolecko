@@ -1,0 +1,26 @@
+<h1>Žádosti o nápovědu</h1>
+<% if not @hint_requests.empty? %>
+  <table class="table">
+    <tr>
+      <th>Šifra</th>
+      <th>Tým</th>
+      <th>Poznámka</th>
+      <th>Nápověda</th>
+    </tr>
+    <% @hint_requests.each do |hint_request| %>
+      <tr>
+        <td><%= hint_request.puzzle.number %>. <%= hint_request.puzzle.name %></td>
+        <td><%= hint_request.team.name %></td>
+        <td><%= hint_request.note %></td>
+        <td>
+          <% hint = hint_request.hints.find_by(team: current_team) %>
+          <% if hint %>
+            <%= hint.text %>
+          <% else %>
+            <%= link_to 'Poslat nápovědu', answer_hint_request_path(hint_request) %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
