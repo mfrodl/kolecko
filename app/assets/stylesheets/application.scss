@@ -61,13 +61,13 @@ div {
 }
 
 a {
-    font-size: 20px;
-    text-decoration: none;
     color: #ffffff;
+    text-decoration: underline;
+    text-decoration-style: dotted;
 }
 
 a:hover {
-    text-decoration: underline;
+    color: #ffff00;
 }
 
 /*
@@ -130,4 +130,23 @@ p.alert {
   src: font-url('FallingSkyBdObl.otf');
   font-weight: bold;
   font-style: italic;
+}
+
+.table, .table th, .table td {
+  border: 1px solid #aaaaaa;
+  border-collapse: collapse;
+  padding: 5px 10px;
+}
+
+.table th {
+  background: #ffffff;
+  color: #000000;
+}
+
+.table tr:nth-child(odd) {
+  background: #333333;
+}
+
+.table tr:nth-child(even) {
+  background: #000000;
 }

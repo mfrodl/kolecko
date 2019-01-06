@@ -1,7 +1,18 @@
+<h1>Odeslat řešení šifry</h1>
+<table class="form">
 <%= form_for @answer, url: {action: 'create'} do |form| %>
   <%= fields_for :puzzle, @answer.puzzle do |puzzle_fields| %>
-    Kód stanoviště: <%= puzzle_fields.text_field :code %>
+    <tr>
+      <td>Kód stanoviště:</td>
+      <td><%= puzzle_fields.text_field :code %></td>
+    </tr>
   <% end %>
-  Odpověď: <%= form.text_field :solution %>
-  <%= form.submit 'Odpovědět' %>
+  <tr>
+    <td>Řešení:</td>
+    <td><%= form.text_field :solution %></td>
+  </tr>
+  <tr>
+    <td><%= form.submit 'Odeslat' %></td>
+  </tr>
 <% end %>
+</table>

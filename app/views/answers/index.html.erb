@@ -1,4 +1,4 @@
-<table>
+<table class="table">
 <% @answers.each do |answer| %>
   <tr class="<%= answer.correct? ? 'correct' : 'incorrect' %>">
     <td><%= answer.created_at.strftime '%H:%M:%S' %></td>
