@@ -24,3 +24,6 @@
 
 # Ignore encrypted secrets key file.
 config/secrets.yml.key
+
+# Ignore precompiled assets
+/public/assets
