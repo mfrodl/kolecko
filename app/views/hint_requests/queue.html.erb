@@ -9,7 +9,7 @@
     </tr>
     <% @hint_requests.each do |hint_request| %>
       <tr>
-        <td><%= hint_request.puzzle.number %>. <%= hint_request.puzzle.name %></td>
+        <td><%= hint_request.puzzle.full_name %></td>
         <td><%= hint_request.team.name %></td>
         <td><%= hint_request.note %></td>
         <td>

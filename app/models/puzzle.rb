@@ -17,4 +17,8 @@ class Puzzle < ApplicationRecord
   def self.find_by_code(code)
     self.find_by(code: normalize(code))
   end
+
+  def full_name
+    "#{number}. #{name}"
+  end
 end
