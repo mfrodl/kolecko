@@ -1,21 +1,13 @@
-module Normalizer
-  def normalize(string)
-    I18n.transliterate(string).upcase
-  end
-end
-
 class Puzzle < ApplicationRecord
-  include Normalizer
-
   has_many :answers, dependent: :destroy
 
   before_save do
-    self.code = normalize(self.code)
-    self.solution = normalize(self.solution)
+    self.code.normalize!
+    self.solution.normalize!
   end
 
   def self.find_by_code(code)
-    self.find_by(code: normalize(code))
+    self.find_by(code: code.normalize)
   end
 
   def full_name

@@ -9,7 +9,7 @@ class AnswersController < ApplicationController
 
   def create
     @answer = Answer.new(answer_params)
-    @puzzle = Puzzle.find_by(code: normalize(puzzle_params[:code]))
+    @puzzle = Puzzle.find_by_code(puzzle_params[:code])
 
     if @puzzle
       @answer.puzzle = @puzzle
@@ -38,16 +38,12 @@ class AnswersController < ApplicationController
 
     def check_solution
       @answer.correct =
-        normalize(@answer.solution) == normalize(@puzzle.solution)
+        @answer.solution.normalize == @puzzle.solution.normalize
 
       if @answer.correct?
         flash[:success] = 'Správná odpověď'
       else
         flash[:alert] = 'Špatná odpověď'
       end
-    end
-
-    def normalize(string)
-      I18n.transliterate(string).upcase
     end
 end
