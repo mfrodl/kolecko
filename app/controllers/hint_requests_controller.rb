@@ -1,4 +1,6 @@
 class HintRequestsController < ApplicationController
+  include ControllerParams
+
   def index
     @hint_requests = HintRequest.where(team: current_team)
   end
@@ -37,13 +39,4 @@ class HintRequestsController < ApplicationController
 
   def destroy
   end
-
-  private
-    def hint_request_params
-      params.require(:hint_request).permit(:note)
-    end
-
-    def puzzle_params
-      params.require(:puzzle).permit(:code)
-    end
 end

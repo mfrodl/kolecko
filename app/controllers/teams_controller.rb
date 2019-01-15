@@ -1,4 +1,6 @@
 class TeamsController < ApplicationController
+  include ControllerParams
+
   #def new
   #end
 
@@ -22,13 +24,4 @@ class TeamsController < ApplicationController
   def index
     @teams = Team.all
   end
-
-  private
-    def team_params
-      params.require(:team).permit(
-        :name, :phone, :password, :player1_name, :player1_email,
-        :player2_name, :player2_email, :player3_name, :player3_email,
-        :player4_name, :player4_name
-      )
-    end
 end

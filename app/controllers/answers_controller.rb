@@ -1,4 +1,6 @@
 class AnswersController < ApplicationController
+  include ControllerParams
+
   def index
     @answers = Answer.where(team: current_team)
   end
@@ -28,14 +30,6 @@ class AnswersController < ApplicationController
   end
 
   private
-    def answer_params
-      params.require(:answer).permit(:solution)
-    end
-
-    def puzzle_params
-      params.require(:puzzle).permit(:code)
-    end
-
     def check_solution
       @answer.correct =
         @answer.solution.normalize == @puzzle.solution.normalize

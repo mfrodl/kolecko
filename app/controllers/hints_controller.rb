@@ -1,4 +1,6 @@
 class HintsController < ApplicationController
+  include ControllerParams
+
   def index
   end
 
@@ -30,9 +32,4 @@ class HintsController < ApplicationController
 
   def destroy
   end
-
-  private
-    def hint_params
-      params.require(:hint).permit(:text, :hint_request_id)
-    end
 end
