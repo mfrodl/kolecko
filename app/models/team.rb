@@ -4,6 +4,8 @@ class Team < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable
 
+  has_many :visits, dependent: :destroy
+
   validates :name, presence: true, uniqueness: true
 
   #HUMANIZED_COLUMNS = {:name => "Název týmu"}

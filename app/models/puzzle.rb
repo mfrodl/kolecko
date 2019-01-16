@@ -1,5 +1,7 @@
 class Puzzle < ApplicationRecord
   has_many :answers, dependent: :destroy
+  has_many :visits, dependent: :destroy
+  has_many :hint_requests, dependent: :destroy
 
   before_save do
     self.code.normalize!

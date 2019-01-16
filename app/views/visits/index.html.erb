@@ -1,0 +1,18 @@
+<h1>Průchod hrou</h1>
+
+<% unless @visits.empty? %>
+  <table class="table">
+    <tr>
+      <th>Šifra</th>
+      <th>Čas příchodu</th>
+      <th>Čas vyluštění</th>
+    </tr>
+    <% @visits.each do |visit| %>
+      <tr>
+        <td><%= visit.puzzle.full_name %></td>
+        <td><%= visit.created_at.strftime '%H:%M:%S' %></td>
+        <td><%= visit.solved_at.strftime '%H:%M:%S' if visit.solved_at? %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

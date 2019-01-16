@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   root 'main#index'
 
   resources :teams, path: 'tymy'
+  resources :visits, path: 'pruchod', only: [:index, :new, :create], path_names: {new: 'zadat'}
 
   scope(path_names: {new: 'nova', edit: 'upravit'}) do
     resources :answers, path: 'odpovedi', only: [:index, :new, :create]

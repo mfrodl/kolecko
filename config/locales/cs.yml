@@ -20,6 +20,7 @@ cs:
   hints: 'Nápovědy'
   request_hint: 'Požádat o nápovědu'
   give_hint: 'Poslat nápovědu jinému týmu'
+  visits: 'Průchod hrou'
 
   errors:
     format: '%{attribute} %{message}'

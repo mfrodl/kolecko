@@ -14,30 +14,34 @@ class AnswersController < ApplicationController
     @puzzle = Puzzle.find_by_code(puzzle_params[:code])
 
     if @puzzle
-      @answer.puzzle = @puzzle
-      @answer.team = current_team
+      @visit = Visit.find_by(team: current_team, puzzle: @puzzle)
 
-      if @answer.save
-        check_solution
+      if @visit
+        @answer.puzzle = @puzzle
+        @answer.team = current_team
+
+        if @answer.save
+          if @answer.correct?
+            flash[:success] = 'Správná odpověď'
+            @visit.solved_at = DateTime.now
+          else
+            flash[:alert] = 'Špatná odpověď'
+            @visit.wrong_answers += 1
+          end
+        else
+          flash[:alert] = @answer.errors.full_messages.join('<br>')
+        end
+
       else
-        flash[:alert] = @answer.errors.full_messages.join('<br>')
+        flash.alert = 'Nejprve musíte odeslat svůj příchod na stanoviště'
+        redirect_to new_visit_path
+        return
       end
+
     else
       flash[:alert] = 'Neplatný kód stanoviště'
     end
 
     redirect_to new_answer_path
   end
-
-  private
-    def check_solution
-      @answer.correct =
-        @answer.solution.normalize == @puzzle.solution.normalize
-
-      if @answer.correct?
-        flash[:success] = 'Správná odpověď'
-      else
-        flash[:alert] = 'Špatná odpověď'
-      end
-    end
 end
