@@ -1,8 +1,20 @@
-<table class="table">
-<% @answers.each do |answer| %>
-  <tr class="<%= answer.correct? ? 'correct' : 'incorrect' %>">
-    <td><%= answer.created_at.strftime '%H:%M:%S' %></td>
-    <td><%= answer.solution %></td>
-  </tr>
+<h1>Moje odpovědi</h1>
+
+<% unless @answers.empty? %>
+  <table class="table">
+    <tr>
+      <th>Šifra</th>
+      <th>Odpověď</th>
+      <th>Čas odeslání</th>
+      <th></th>
+    </tr>
+  <% @answers.each do |answer| %>
+    <tr class="<%= answer.correct? ? 'correct' : 'incorrect' %>">
+      <td><%= answer.puzzle.full_name %></td>
+      <td><%= answer.solution %></td>
+      <td><%= answer.created_at.strftime '%H:%M:%S' %></td>
+      <td><%= answer.correct? ? '✓' : '✗' %></td>
+    </tr>
+  <% end %>
+  </table>
 <% end %>
-</table>

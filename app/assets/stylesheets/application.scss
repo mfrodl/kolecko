@@ -150,3 +150,11 @@ p.alert {
 .table tr:nth-child(even) {
   background: #000000;
 }
+
+.table tr.incorrect {
+  background: #770000;
+}
+
+.table tr.correct {
+  background: #007700;
+}
