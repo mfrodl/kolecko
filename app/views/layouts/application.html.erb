@@ -18,6 +18,7 @@
           <ul>
             <% if team_signed_in? %>
               <li><%= link_to t(:visits), visits_path %></li>
+              <li><%= link_to t(:new_visit), new_visit_path %></li>
               <li><%= link_to t(:new_answer), new_answer_path %></li>
               <li><%= link_to t(:my_answers), answers_path %></li>
               <li><%= link_to t(:log_out), destroy_team_session_path, method: :delete %></li>

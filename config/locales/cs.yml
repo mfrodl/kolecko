@@ -21,6 +21,7 @@ cs:
   request_hint: 'Požádat o nápovědu'
   give_hint: 'Poslat nápovědu jinému týmu'
   visits: 'Průchod hrou'
+  new_visit: 'Příchod na stanoviště'
 
   errors:
     format: '%{attribute} %{message}'
