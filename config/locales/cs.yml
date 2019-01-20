@@ -22,6 +22,7 @@ cs:
   give_hint: 'Poslat nápovědu jinému týmu'
   visits: 'Průchod hrou'
   new_visit: 'Příchod na stanoviště'
+  map: 'Mapa'
 
   errors:
     format: '%{attribute} %{message}'

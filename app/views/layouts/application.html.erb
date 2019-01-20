@@ -8,7 +8,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body data-controller="<%= controller_name %>" data-action="<%= action_name %>">
     <div class="outer">
       <div class="logo">
         <%= link_to image_tag('logo.png'), root_path %>
@@ -23,6 +23,7 @@
               <li><%= link_to t(:my_answers), answers_path %></li>
               <li><%= link_to t(:log_out), destroy_team_session_path, method: :delete %></li>
               <li><%= link_to t(:hints), hint_requests_path %></li>
+              <li><%= link_to t(:map), map_path %></li>
             <% else %>
               <li><%= link_to t(:log_in), new_team_session_path %></li>
               <li><%= link_to t(:sign_up), new_team_registration_path %></li>

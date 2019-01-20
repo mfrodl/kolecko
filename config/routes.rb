@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/mapa', to: 'puzzles#map', as: :map
+
   get '/pravidla', to: 'pages#show', as: :rules, page: 'rules'
   get '/vysledky', to: 'pages#show', as: :results, page: 'results'
 end
