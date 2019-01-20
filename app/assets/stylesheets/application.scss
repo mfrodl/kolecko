@@ -17,7 +17,6 @@
 
 html, body {
     margin: 0 auto;
-    height: 100vh;
 }
 
 body {
@@ -28,11 +27,6 @@ body {
 
 div {
     border: 0px solid #ffff00;
-}
-
-.outer {
-    margin: 0 auto;
-    min-height: 100vh;
 }
 
 .logo {
@@ -57,7 +51,13 @@ div {
     margin: 0 auto;
     margin-left: 200px;
     background-color: #222222;
-    min-height: calc(100vh - 110px);
+    min-height: calc(100vh - 150px);
+    height: calc(100vh - 150px);
+    padding: 20px;
+}
+
+h1 {
+    margin: 0px auto;
     padding: 20px;
 }
 
