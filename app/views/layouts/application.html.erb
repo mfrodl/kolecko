@@ -34,6 +34,14 @@
             <li><%= link_to t(:log_out), destroy_team_session_path, method: :delete %></li>
           <% end %>
         </ul>
+
+        KoleCZko 2018
+        <ul>
+          <li><%= link_to t(:teams2018), teams2018_path %></li>
+          <li><%= link_to t(:results2018), results2018_path %></li>
+          <li><%= link_to t(:rules2018), rules2018_path %></li>
+          <li><%= link_to t(:puzzles2018), puzzles2018_path %></li>
+        </ul>
       </div>
       <div class="content">
         <%= render_flash(:alert) %>
