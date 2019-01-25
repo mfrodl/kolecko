@@ -20,7 +20,6 @@
             <li><%= link_to t(:new_visit), new_visit_path %></li>
             <li><%= link_to t(:new_answer), new_answer_path %></li>
             <li><%= link_to t(:my_answers), answers_path %></li>
-            <li><%= link_to t(:log_out), destroy_team_session_path, method: :delete %></li>
             <li><%= link_to t(:hints), hint_requests_path %></li>
             <li><%= link_to t(:map), map_path %></li>
           <% else %>
@@ -31,6 +30,9 @@
           <li><%= link_to t(:teams), teams_path %></li>
           <li><%= link_to t(:puzzles_and_solutions), puzzles_path %></li>
           <li><%= link_to t(:results), results_path %></li>
+          <% if team_signed_in? %>
+            <li><%= link_to t(:log_out), destroy_team_session_path, method: :delete %></li>
+          <% end %>
         </ul>
       </div>
       <div class="content">
