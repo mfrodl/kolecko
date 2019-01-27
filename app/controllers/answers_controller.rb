@@ -28,6 +28,7 @@ class AnswersController < ApplicationController
             flash[:alert] = 'Špatná odpověď'
             @visit.wrong_answers += 1
           end
+          @visit.save
         else
           flash[:alert] = @answer.errors.full_messages.join('<br>')
         end
