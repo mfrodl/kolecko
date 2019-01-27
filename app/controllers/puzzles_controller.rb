@@ -4,8 +4,4 @@ class PuzzlesController < ApplicationController
   def index
     @puzzles = Puzzle.all
   end
-
-  def map
-    @puzzles = Puzzle.all
-  end
 end

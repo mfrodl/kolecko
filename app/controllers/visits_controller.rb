@@ -5,6 +5,14 @@ class VisitsController < ApplicationController
     @visits = Visit.where(team: current_team).sort_by {|visit| visit.puzzle.number}
   end
 
+  def map
+    @open_puzzles = Puzzle.where('? BETWEEN opens_at AND closes_at', Time.now)
+    @visited_puzzles = Visit.where(team: current_team).map(&:puzzle)
+    @solved_puzzles = Visit.where(team: current_team)
+                           .where.not(solved_at: nil)
+                           .map(&:puzzle)
+  end
+
   def new
     @visit = Visit.new
   end

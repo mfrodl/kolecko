@@ -1,0 +1,92 @@
+var map;
+
+function initMap() {
+  map = new ol.Map({
+    target: 'map',
+    layers: [
+      new ol.layer.Tile({
+        source: new ol.source.OSM()
+      })
+    ],
+    view: new ol.View({
+      center: ol.proj.fromLonLat([16.6056447, 49.1908617]),
+      //center: ol.proj.fromLonLat([8.6, 47.3]),
+      zoom: 14
+    })
+  });
+}
+
+function addMapPoint(longitude, latitude, icon) {
+  var vectorLayer = new ol.layer.Vector({
+    source: new ol.source.Vector({
+      features: [
+        new ol.Feature({
+          geometry: new ol.geom.Point(
+            ol.proj.fromLonLat([longitude, latitude])
+          )
+        })
+      ]
+    }),
+    style: new ol.style.Style({
+      image: new ol.style.Icon({
+        anchor: [0.5, 0.5],
+        anchorXUnits: "fraction",
+        anchorYUnits: "fraction",
+        src: icon
+      })
+    })
+  });
+  map.addLayer(vectorLayer);
+}
+
+function addOpenPuzzlePoint(longitude, latitude) {
+  addMapPoint(longitude, latitude, "<%= asset_path 'open_puzzle.svg' %>");
+}
+
+function addVisitedPuzzlePoint(longitude, latitude) {
+  addMapPoint(longitude, latitude, "<%= asset_path 'visited_puzzle.svg' %>");
+}
+
+function addSolvedPuzzlePoint(longitude, latitude) {
+  addMapPoint(longitude, latitude, "<%= asset_path 'solved_puzzle.svg' %>");
+}
+
+function showMyPosition() {
+  navigator.geolocation.getCurrentPosition(
+    function(position) {
+      addMapPoint(
+        position.coords.longitude,
+        position.coords.latitude,
+        "<%= asset_path 'current_location.svg' %>"
+      );
+    }
+  );
+}
+
+$(document).on('turbolinks:load', function() {
+  var data = $('body').data();
+  if (data.controller == 'visits' && data.action == 'map') {
+    initMap();
+    showMyPosition();
+
+    $.ajax({
+      url: '/mapa',
+      dataType: 'json',
+      success: function(result) {
+        for (let puzzle of result.puzzles) {
+          if (puzzle.visited) {
+            if (puzzle.solved) {
+              addSolvedPuzzlePoint(puzzle.longitude, puzzle.latitude);
+            }
+            else {
+              addVisitedPuzzlePoint(puzzle.longitude, puzzle.latitude);
+            }
+          }
+          else {
+            addOpenPuzzlePoint(puzzle.longitude, puzzle.latitude);
+          }
+        }
+      }
+    });
+  }
+});

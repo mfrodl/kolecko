@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   root 'main#index'
 
   resources :teams, path: 'tymy'
+
   resources :visits, path: 'pruchod', only: [:index, :new, :create], path_names: {new: 'zadat'}
+  get '/mapa', to: 'visits#map', as: :map
 
   scope(path_names: {new: 'nova', edit: 'upravit'}) do
     resources :answers, path: 'odpovedi', only: [:index, :new, :create]
@@ -29,8 +31,6 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  get '/mapa', to: 'puzzles#map', as: :map
 
   get '/pravidla', to: 'pages#show', as: :rules, page: 'rules'
   get '/vysledky', to: 'pages#show', as: :results, page: 'results'
