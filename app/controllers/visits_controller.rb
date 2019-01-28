@@ -21,11 +21,17 @@ class VisitsController < ApplicationController
     @puzzle = Puzzle.find_by_code(puzzle_params[:code])
 
     if @puzzle
+      #@visit = Visit.find_or_initialize_by(team: current_team, puzzle: @puzzle)
+
       @visit = Visit.new
       @visit.puzzle = @puzzle
       @visit.team = current_team
-      @visit.save
-      redirect_to visits_path
+      if @visit.save
+        redirect_to visits_path
+      else
+        flash[:alert] = 'Příchod na stanoviště byl již zaznamenán'
+        redirect_to new_visit_path
+      end
     else
       flash[:alert] = 'Neplatný kód stanoviště'
       redirect_to new_visit_path
