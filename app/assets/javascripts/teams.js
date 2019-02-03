@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('turbolinks:load', function() {
   $.ajax({
     url: '/tymy',
     dataType: 'json',
