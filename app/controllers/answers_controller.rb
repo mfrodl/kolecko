@@ -2,7 +2,7 @@ class AnswersController < ApplicationController
   include ControllerParams
 
   def index
-    @answers = Answer.where(team: current_team)
+    @answers = current_team.answers
   end
 
   def new
@@ -14,16 +14,33 @@ class AnswersController < ApplicationController
     @puzzle = Puzzle.find_by_code(puzzle_params[:code])
 
     if @puzzle
-      @visit = Visit.find_by(team: current_team, puzzle: @puzzle)
+      @visit = @puzzle.visits.find_by(team: current_team)
 
       if @visit
-        @answer.puzzle = @puzzle
-        @answer.team = current_team
+        if @visit.solved?
+          flash[:alert] = 'Šifra už byla vyřešena'
+          redirect_to new_answer_path
+          return
+        end
+
+        @answer.visit = @visit
+        @answer.solution = @puzzle.solutions.find_by(text: @answer.text.normalize)
 
         if @answer.save
           if @answer.correct?
-            flash[:success] = 'Správná odpověď'
-            @visit.solved_at = DateTime.now
+            current_team.points += @answer.solution.points
+
+            total_solutions = @puzzle.solutions.count
+            found_solutions = @visit.solutions.count
+
+            flash[:success] = "Správná odpověď"
+            if total_solutions > 1
+              flash[:success] << " (#{found_solutions}/#{total_solutions})"
+            end
+
+            if found_solutions == total_solutions
+              @visit.solved_at = DateTime.now
+            end
           else
             flash[:alert] = 'Špatná odpověď'
             @visit.wrong_answers += 1

@@ -5,6 +5,7 @@ class Team < ApplicationRecord
          :recoverable, :rememberable, :trackable
 
   has_many :visits, dependent: :destroy
+  has_many :answers, through: :visits
 
   validates :name, presence: true, uniqueness: true
 

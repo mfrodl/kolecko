@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  puzzle: one
+  text: MyString
+  points: 1
+
+two:
+  puzzle: two
+  text: MyString
+  points: 1

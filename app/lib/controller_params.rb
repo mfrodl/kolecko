@@ -1,7 +1,7 @@
 module ControllerParams
   private
     def answer_params
-      params.require(:answer).permit(:solution)
+      params.require(:answer).permit(:text)
     end
 
     def hint_request_params

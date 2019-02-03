@@ -31,6 +31,8 @@ cs:
     models:
       team: 'Tým'
     attributes:
+      answer:
+        solution: 'Řešení'
       team:
         name: 'Název týmu'
       hint:

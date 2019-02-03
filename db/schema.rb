@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190128202019) do
+ActiveRecord::Schema.define(version: 20190202002715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
-    t.string "solution"
+    t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "correct"
-    t.bigint "puzzle_id"
-    t.bigint "team_id"
-    t.index ["puzzle_id"], name: "index_answers_on_puzzle_id"
-    t.index ["team_id"], name: "index_answers_on_team_id"
+    t.bigint "solution_id"
+    t.bigint "visit_id"
+    t.index ["solution_id"], name: "index_answers_on_solution_id"
+    t.index ["visit_id"], name: "index_answers_on_visit_id"
   end
 
   create_table "hint_requests", force: :cascade do |t|
@@ -53,11 +53,19 @@ ActiveRecord::Schema.define(version: 20190128202019) do
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "solution"
     t.float "latitude"
     t.float "longitude"
     t.datetime "opens_at"
     t.datetime "closes_at"
+  end
+
+  create_table "solutions", force: :cascade do |t|
+    t.bigint "puzzle_id"
+    t.string "text"
+    t.integer "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["puzzle_id"], name: "index_solutions_on_puzzle_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -84,6 +92,7 @@ ActiveRecord::Schema.define(version: 20190128202019) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.integer "points", default: 0
     t.index ["name"], name: "index_teams_on_name", unique: true
     t.index ["reset_password_token"], name: "index_teams_on_reset_password_token", unique: true
   end
@@ -100,10 +109,11 @@ ActiveRecord::Schema.define(version: 20190128202019) do
     t.index ["team_id"], name: "index_visits_on_team_id"
   end
 
-  add_foreign_key "answers", "puzzles"
-  add_foreign_key "answers", "teams"
+  add_foreign_key "answers", "solutions"
+  add_foreign_key "answers", "visits"
   add_foreign_key "hint_requests", "puzzles"
   add_foreign_key "hint_requests", "teams"
+  add_foreign_key "solutions", "puzzles"
   add_foreign_key "visits", "puzzles"
   add_foreign_key "visits", "teams"
 end
