@@ -29,6 +29,7 @@ class AnswersController < ApplicationController
         if @answer.save
           if @answer.correct?
             current_team.points += @answer.solution.points
+            current_team.save
 
             total_solutions = @puzzle.solutions.count
             found_solutions = @visit.solutions.count
@@ -36,10 +37,6 @@ class AnswersController < ApplicationController
             flash[:success] = "Správná odpověď"
             if total_solutions > 1
               flash[:success] << " (#{found_solutions}/#{total_solutions})"
-            end
-
-            if found_solutions == total_solutions
-              @visit.solved_at = DateTime.now
             end
           else
             flash[:alert] = 'Špatná odpověď'

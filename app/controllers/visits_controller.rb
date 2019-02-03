@@ -21,11 +21,7 @@ class VisitsController < ApplicationController
     @puzzle = Puzzle.find_by_code(puzzle_params[:code])
 
     if @puzzle
-      #@visit = Visit.find_or_initialize_by(team: current_team, puzzle: @puzzle)
-
-      @visit = Visit.new
-      @visit.puzzle = @puzzle
-      @visit.team = current_team
+      @visit = Visit.new(puzzle: @puzzle, team: current_team)
       if @visit.save
         redirect_to visits_path
       else

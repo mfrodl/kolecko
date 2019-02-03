@@ -1,5 +1,5 @@
 class Answer < ApplicationRecord
-  belongs_to :visit
+  belongs_to :visit, autosave: true
   belongs_to :solution, optional: true
   has_one :team, through: :visit
   has_one :puzzle, through: :visit
