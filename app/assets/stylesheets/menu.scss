@@ -1,0 +1,68 @@
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+.menu {
+    margin: 0 auto;
+    height: 100%;
+    width: 0px;
+    float: left;
+    min-height: calc(100vh - 60px);
+    position: fixed;
+    z-index: 1;
+    transition: 0.3s;
+    top: 60px;
+    left: 0px;
+    overflow-x: hidden;
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.menu.open {
+    width: 300px;
+}
+
+ul.main-menu,
+ul.submenu {
+  list-style: none;
+  padding-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.menu-item {
+  display: block;
+  position: relative;
+  padding: 15px 15px 15px 52px;
+  cursor: pointer;
+  transition: 0.4s;
+  white-space: nowrap;
+}
+
+.menu-item i {
+  position: absolute;
+  top: 17px;
+  left: 17px;
+}
+
+.menu-item .fa-angle-down {
+  left: 270px;
+  transition: 0.1s;
+}
+
+.menu-item.open .fa-angle-down {
+  transform: rotate(180deg);
+}
+
+.menu-item:hover {
+  background: #550000;
+}
+
+ul.submenu {
+  display: none;
+}
+
+.submenu-item {
+  display: block;
+  padding: 15px 15px 15px 45px;
+  background: rgba(52, 52, 52, 0.9);
+  white-space: nowrap;
+}
