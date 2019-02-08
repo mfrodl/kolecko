@@ -2,47 +2,56 @@
 <html>
   <head>
     <title>iKolečko</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body data-controller="<%= controller_name %>" data-action="<%= action_name %>">
-    <div class="logo">
-      <%= link_to image_tag('logo.png'), root_path %>
+      <div class="header">
+        <i class="hamburger fa fa-bars"></i>
+        <!--<%= link_to image_tag('logo.png'), root_path %>-->
+      </div>
+    <div class="menu closed">
+      <ul class="main-menu">
+        <% if team_signed_in? %>
+          <%= submenu(t(:visits), 'map-signs') do %>
+            <%= submenu_item(t(:new_visit), new_visit_path) %>
+            <%= submenu_item('Příchody a ochody', visits_path) %>
+          <% end %>
+          <%= submenu('Odpovědi', 'comment') do %>
+            <%= submenu_item(t(:new_answer), new_answer_path) %>
+            <%= submenu_item(t(:my_answers), answers_path) %>
+          <% end %>
+          <%= submenu(t(:hints), 'question-circle') do %>
+            <%= submenu_item('Požádat o nápovědu', new_hint_request_path) %>
+            <%= submenu_item('Přijaté nápovědy', hint_requests_path) %>
+            <%= submenu_item('Poslat nápovědu jinému týmu', queue_hint_requests_path) %>
+          <% end %>
+          <%= menu_item(t(:map), map_path, 'map') %>
+          <%= menu_item(t(:teams), teams_path, 'users') %>
+        <% else %>
+          <%= menu_item(t(:log_in), new_team_session_path, 'sign-in') %>
+          <%= menu_item(t(:sign_up), new_team_registration_path, 'user-plus') %>
+        <% end %>
+        <%= menu_item(t(:rules), rules_path, 'gavel') %>
+        <%= menu_item(t(:puzzles_and_solutions), puzzles_path, 'puzzle-piece') %>
+        <%= menu_item(t(:results), results_path, 'trophy') %>
+        <%= submenu('KoleCZko 2018', 'history') do %>
+          <%= submenu_item(t(:teams), archive_teams_path('2018')) %>
+          <%= submenu_item(t(:results), archive_results_path('2018')) %>
+          <%= submenu_item(t(:rules), archive_rules_path('2018')) %>
+          <%= submenu_item(t(:puzzles_and_solutions), archive_puzzles_path('2018')) %>
+        <% end %>
+        <% if team_signed_in? %>
+          <%= menu_item(t(:log_out), destroy_team_session_path, 'sign-out', method: :delete) %>
+        <% end %>
+      </ul>
     </div>
     <div class="main">
-      <div class="menu">
-        <ul>
-          <% if team_signed_in? %>
-            <li><%= link_to t(:visits), visits_path %></li>
-            <li><%= link_to t(:new_visit), new_visit_path %></li>
-            <li><%= link_to t(:new_answer), new_answer_path %></li>
-            <li><%= link_to t(:my_answers), answers_path %></li>
-            <li><%= link_to t(:hints), hint_requests_path %></li>
-            <li><%= link_to t(:map), map_path %></li>
-          <% else %>
-            <li><%= link_to t(:log_in), new_team_session_path %></li>
-            <li><%= link_to t(:sign_up), new_team_registration_path %></li>
-          <% end %>
-          <li><%= link_to t(:rules), rules_path %></li>
-          <li><%= link_to t(:teams), teams_path %></li>
-          <li><%= link_to t(:puzzles_and_solutions), puzzles_path %></li>
-          <li><%= link_to t(:results), results_path %></li>
-          <% if team_signed_in? %>
-            <li><%= link_to t(:log_out), destroy_team_session_path, method: :delete %></li>
-          <% end %>
-        </ul>
-
-        KoleCZko 2018
-        <ul>
-          <li><%= link_to t(:teams), archive_teams_path('2018') %></li>
-          <li><%= link_to t(:results), archive_results_path('2018') %></li>
-          <li><%= link_to t(:rules), archive_rules_path('2018') %></li>
-          <li><%= link_to t(:puzzles_and_solutions), archive_puzzles_path('2018') %></li>
-        </ul>
-      </div>
       <div class="content">
         <%= render_flash(:alert) %>
         <%= render_flash(:success) %>

@@ -23,35 +23,56 @@ body {
     color: #ffffff;
     background-color: #000000;
     font-family: Falling Sky;
+    font-size: 18px;
 }
 
 div {
     border: 0px solid #ffff00;
 }
 
-.logo {
-    margin: 20px;
-    height: 70px;
+.header {
+    padding: 20px;
+    height: 60px;
+    box-sizing: border-box;
+}
+
+.header .hamburger {
+    font-size: 18px;
 }
 
 .main {
-    margin: 0 auto;
-    min-height: calc(100vh - 110px);
+    margin: 0;
+    min-height: calc(100vh - 60px);
+    transition: 0.3s;
+}
+
+.main.open-menu {
+    margin-left: 300px;
 }
 
 .menu {
     margin: 0 auto;
-    float: left;
-    width: 200px;
     height: 100%;
-    min-height: calc(100vh - 110px);
+    width: 0px;
+    float: left;
+    min-height: calc(100vh - 60px);
+    position: fixed;
+    z-index: 1;
+    transition: 0.3s;
+    top: 60px;
+    left: 0px;
+    overflow-x: hidden;
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.menu.open {
+    width: 300px;
 }
 
 .content {
     margin: 0 auto;
-    margin-left: 200px;
     background-color: #222222;
-    min-height: calc(100vh - 150px);
+    min-height: calc(100vh - 100px);
     padding: 20px;
 }
 
@@ -62,38 +83,12 @@ h1 {
 
 a {
     color: #ffffff;
-    text-decoration: underline;
-    text-decoration-style: dotted;
+    text-decoration: none;
 }
 
 a:hover {
     color: #ffff00;
 }
-
-/*
-.signUpForm {
-    display: table;
-    margin: auto;
-}
-
-.signUpForm td {
-    padding: 3px;
-}
-
-input {
-    margin: 0;
-}
-
-input[type="text"],
-input[type="password"] {
-    width: 100%;
-}
-
-input[type="submit"] {
-    display: table;
-    margin: auto;
-}
-*/
 
 p.success, p.notice, p.alert {
   border: 1px solid #ffffff;
@@ -157,4 +152,51 @@ p.alert {
 
 .table tr.correct {
   background: #007700;
+}
+
+ul.main-menu,
+ul.submenu {
+  list-style: none;
+  padding-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.menu-item {
+  display: block;
+  position: relative;
+  padding: 15px 15px 15px 52px;
+  cursor: pointer;
+  transition: 0.4s;
+  white-space: nowrap;
+}
+
+.menu-item i {
+  position: absolute;
+  top: 17px;
+  left: 17px;
+}
+
+.menu-item .fa-angle-down {
+  left: 270px;
+  transition: 0.1s;
+}
+
+.menu-item.open .fa-angle-down {
+  transform: rotate(180deg);
+}
+
+.menu-item:hover {
+  background: #550000;
+}
+
+ul.submenu {
+  display: none;
+}
+
+.submenu-item {
+  display: block;
+  padding: 15px 15px 15px 45px;
+  background: rgba(52, 52, 52, 0.9);
+  white-space: nowrap;
 }
