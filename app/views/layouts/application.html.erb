@@ -50,13 +50,11 @@
         <% end %>
       </ul>
     </div>
-    <div class="main">
-      <div class="content">
-        <%= render_flash(:alert) %>
-        <%= render_flash(:success) %>
-        <%= render_flash(:notice) %>
-        <%= yield %>
-      </div>
+    <div class="main" id="main">
+      <%= render_flash(:alert) %>
+      <%= render_flash(:success) %>
+      <%= render_flash(:notice) %>
+      <%= yield %>
     </div>
   </body>
 </html>

@@ -21,7 +21,7 @@ html, body {
 
 body {
     color: #ffffff;
-    background-color: #000000;
+    background-color: #222222;
     font-family: Falling Sky;
     font-size: 18px;
 }
@@ -31,9 +31,16 @@ div {
 }
 
 .header {
+    background-color: #000000;
     padding: 20px;
     height: 60px;
     box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    z-index: 1;
 }
 
 .header .hamburger {
@@ -41,16 +48,13 @@ div {
 }
 
 .main {
-    margin: 0;
-    min-height: calc(100vh - 60px);
-    transition: 0.3s;
+    margin: 60px 0 0 0;
+    padding: 20px;
 }
 
-.content {
-    margin: 0 auto;
-    background-color: #222222;
-    min-height: calc(100vh - 100px);
-    padding: 20px;
+.main.map {
+    padding: 0;
+    height: calc(100vh - 60px);
 }
 
 h1 {
