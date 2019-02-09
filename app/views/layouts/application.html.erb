@@ -19,7 +19,7 @@
         <% if team_signed_in? %>
           <%= submenu(t(:visits), 'map-signs') do %>
             <%= submenu_item(t(:new_visit), new_visit_path) %>
-            <%= submenu_item('Příchody a ochody', visits_path) %>
+            <%= submenu_item('Příchody a odchody', visits_path) %>
           <% end %>
           <%= submenu('Odpovědi', 'comment') do %>
             <%= submenu_item(t(:new_answer), new_answer_path) %>
