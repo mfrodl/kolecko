@@ -12,7 +12,11 @@
   <body data-controller="<%= controller_name %>" data-action="<%= action_name %>">
       <div class="header">
         <i class="hamburger fa fa-bars"></i>
-        <!--<%= link_to image_tag('logo.png'), root_path %>-->
+        <div class="logo-container">
+          <%= link_to image_tag('logo.png', class: 'logo'), root_path %>
+        </div>
+        <i class="fa fa-envelope"></i>
+        <i class="fa fa-user"></i>
       </div>
     <div class="menu closed">
       <ul class="main-menu">

@@ -38,13 +38,22 @@ div {
     position: fixed;
     top: 0;
     left: 0;
-    display: block;
+    display: flex;
     width: 100%;
     z-index: 1;
 }
 
-.header .hamburger {
-    font-size: 18px;
+.header .logo-container {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.logo {
+    height: 23px;
+}
+
+.header .fa-user {
+    margin-left: 30px;
 }
 
 .main {
