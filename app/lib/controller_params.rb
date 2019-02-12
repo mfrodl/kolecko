@@ -5,7 +5,7 @@ module ControllerParams
     end
 
     def hint_request_params
-      params.require(:hint_request).permit(:note)
+      params.require(:hint_request).permit(:note, :bounty)
     end
 
     def hint_params

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190203003217) do
+ActiveRecord::Schema.define(version: 20190211204015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20190203003217) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "puzzle_id"
+    t.integer "bounty"
     t.index ["puzzle_id"], name: "index_hint_requests_on_puzzle_id"
     t.index ["team_id"], name: "index_hint_requests_on_team_id"
   end
@@ -93,6 +94,7 @@ ActiveRecord::Schema.define(version: 20190203003217) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.integer "points", default: 0
+    t.integer "deposit", default: 0
     t.index ["name"], name: "index_teams_on_name", unique: true
     t.index ["reset_password_token"], name: "index_teams_on_reset_password_token", unique: true
   end

@@ -9,12 +9,13 @@ class Team < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
-  #HUMANIZED_COLUMNS = {:name => "Název týmu"}
+  def balance
+    points - deposit
+  end
 
-  #def human_attribute_name(attribute)
-  #  'Název týmu'
-  #  #HUMANIZED_COLUMNS[attribute.to_sym] || super
-  #end
+  def balance_was
+    points_was - deposit_was
+  end
 
   def email_required?
     false

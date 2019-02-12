@@ -20,15 +20,18 @@ class HintRequestsController < ApplicationController
     if @puzzle
       @hint_request.puzzle = @puzzle
       @hint_request.team = current_team
+      current_team.deposit += hint_request_params[:bounty].to_i
 
-      if not @hint_request.save
+      if @hint_request.save
+        redirect_to hint_requests_path
+      else
         flash[:alert] = @hint_request.errors.full_messages.join('<br>')
+        redirect_to new_hint_request_path
       end
     else
       flash[:alert] = 'Neplatný kód stanoviště'
+      redirect_to new_hint_request_path
     end
-
-    redirect_to hint_requests_path
   end
 
   def edit
