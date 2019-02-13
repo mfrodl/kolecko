@@ -4,20 +4,43 @@
 .menu {
     margin: 0 auto;
     height: 100%;
-    width: 0px;
     float: left;
     min-height: calc(100vh - 60px);
     position: fixed;
     z-index: 1;
-    transition: 0.3s;
     top: 60px;
     left: 0px;
     overflow-x: hidden;
     background: rgba(0, 0, 0, 0.9);
+    transition: 0.3s;
 }
 
-.menu.open {
+.main {
+    transition: 0.3s;
+}
+
+@media only screen and (max-width: 800px) {
+  .menu {
+    width: 0px;
+  }
+
+  .menu.open {
     width: 300px;
+  }
+
+  .menu.closed {
+    width: 0px;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .menu {
+    width: 300px;
+  }
+
+  .hamburger {
+    display: none;
+  }
 }
 
 ul.main-menu,

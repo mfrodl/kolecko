@@ -12,7 +12,7 @@ $(document).on('turbolinks:load', function() {
   var menu = Menu($('.main-menu'));
 
   var toggleMenu = function() {
-    $('.menu').toggleClass('open');
+    $('.menu').toggleClass('open closed');
     $('.hamburger').toggleClass('fa-bars fa-arrow-left');
   };
 
