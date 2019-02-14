@@ -1,8 +1,8 @@
 class BalanceValidator < ActiveModel::Validator
   def validate(hint_request)
-    if hint_request.bounty > hint_request.team.balance
+    if hint_request.team.points < 0
       message = "Pro tuto akci nemáte dostatek bodů " \
-                "(#{hint_request.team.balance_was} bodů k dispozici)"
+                "(#{hint_request.team.points_was} bodů k dispozici)"
       hint_request.errors.add(:base, message)
     end
   end

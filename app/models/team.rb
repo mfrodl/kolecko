@@ -9,14 +9,6 @@ class Team < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
-  def balance
-    points - deposit
-  end
-
-  def balance_was
-    points_was - deposit_was
-  end
-
   def email_required?
     false
   end

@@ -20,7 +20,7 @@ class HintRequestsController < ApplicationController
     if @puzzle
       @hint_request.puzzle = @puzzle
       @hint_request.team = current_team
-      current_team.deposit += hint_request_params[:bounty].to_i
+      current_team.points -= hint_request_params[:bounty].to_i
 
       if @hint_request.save
         redirect_to hint_requests_path
