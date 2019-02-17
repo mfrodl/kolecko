@@ -19,9 +19,14 @@ class CancelValidator < ActiveModel::Validator
 end
 
 class HintRequest < ApplicationRecord
-  belongs_to :team, autosave: true
-  belongs_to :puzzle
+  belongs_to :visit
+  has_one :team, through: :visit, autosave: true
+  has_one :puzzle, through: :visit
   has_many :hints, dependent: :destroy
 
   validates_with BalanceValidator, CancelValidator
+
+  before_save do
+    self.closed = true if self.cancelled?
+  end
 end

@@ -2,11 +2,14 @@ class HintRequestsController < ApplicationController
   include ControllerParams
 
   def index
-    @hint_requests = HintRequest.where(team: current_team)
+    @hint_requests = HintRequest.joins(:visit).
+                                 where(visits: { team: current_team })
   end
 
   def queue
-    @hint_requests = HintRequest.where.not(team: current_team, cancelled: true)
+   @hint_requests = HintRequest.joins(:visit).
+                                where.not(visits: { team: current_team },
+                                          cancelled: true)
   end
 
   def new
@@ -17,19 +20,35 @@ class HintRequestsController < ApplicationController
     @hint_request = HintRequest.new(hint_request_params)
     @puzzle = Puzzle.find_by_code(puzzle_params[:code])
 
-    if @puzzle
-      @hint_request.puzzle = @puzzle
-      @hint_request.team = current_team
-      current_team.points -= hint_request_params[:bounty].to_i
-
-      if @hint_request.save
-        redirect_to hint_requests_path
-      else
-        flash[:alert] = @hint_request.errors.full_messages.join('<br>')
-        redirect_to new_hint_request_path
-      end
-    else
+    if !@puzzle
       flash[:alert] = 'Neplatný kód stanoviště'
+      redirect_to new_hint_request_path
+      return
+    end
+
+    @visit = Visit.find_by(puzzle: @puzzle)
+    if !@visit
+      flash[:alert] = 'Nejprve musíte odeslat svůj příchod na stanoviště'
+      redirect_to new_visit_path
+      return
+    end
+
+    if @visit.hint_requests.where(closed: false).any?
+      flash[:alert] = 'U této šifry jste již požádali o nápovědu. ' + \
+                      'Chcete-li požádat znovu, je nutné nejdříve zrušit ' + \
+                      'aktivní žádosti.'
+      redirect_to hint_requests_path
+      return
+    end
+
+    @hint_request.visit = @visit
+    current_team.points -= hint_request_params[:bounty].to_i
+
+    if @hint_request.save
+      flash[:success] = 'Žádost úspěšně odeslána'
+      redirect_to hint_requests_path
+    else
+      flash[:alert] = @hint_request.errors.full_messages.join('<br>')
       redirect_to new_hint_request_path
     end
   end

@@ -48,7 +48,7 @@ class AnswersController < ApplicationController
         end
 
       else
-        flash.alert = 'Nejprve musíte odeslat svůj příchod na stanoviště'
+        flash[:alert] = 'Nejprve musíte odeslat svůj příchod na stanoviště'
         redirect_to new_visit_path
         return
       end
