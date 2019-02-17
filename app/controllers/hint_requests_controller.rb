@@ -46,6 +46,8 @@ class HintRequestsController < ApplicationController
     @hint_request.team.points += @hint_request.bounty
     if @hint_request.save
       flash[:success] = 'Úspěšně zrušeno'
+    else
+      flash[:alert] = @hint_request.errors.full_messages.join('<br>')
     end
 
     redirect_to hint_requests_path
