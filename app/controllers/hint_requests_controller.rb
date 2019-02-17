@@ -6,7 +6,7 @@ class HintRequestsController < ApplicationController
   end
 
   def queue
-    @hint_requests = HintRequest.where.not(team: current_team)
+    @hint_requests = HintRequest.where.not(team: current_team, cancelled: true)
   end
 
   def new
