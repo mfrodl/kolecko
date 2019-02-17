@@ -43,6 +43,7 @@ class HintRequestsController < ApplicationController
   def cancel
     @hint_request = HintRequest.find(params[:id])
     @hint_request.cancelled = true
+    @hint_request.team.points += @hint_request.bounty
     if @hint_request.save
       flash[:success] = 'Úspěšně zrušeno'
     end
