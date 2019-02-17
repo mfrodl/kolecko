@@ -40,6 +40,16 @@ class HintRequestsController < ApplicationController
   def update
   end
 
+  def cancel
+    @hint_request = HintRequest.find(params[:id])
+    @hint_request.cancelled = true
+    if @hint_request.save
+      flash[:success] = 'Úspěšně zrušeno'
+    end
+
+    redirect_to hint_requests_path
+  end
+
   def destroy
   end
 end

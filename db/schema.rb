@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190214213810) do
+ActiveRecord::Schema.define(version: 20190215205557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20190214213810) do
     t.datetime "updated_at", null: false
     t.bigint "puzzle_id"
     t.integer "bounty"
+    t.boolean "cancelled"
     t.index ["puzzle_id"], name: "index_hint_requests_on_puzzle_id"
     t.index ["team_id"], name: "index_hint_requests_on_team_id"
   end
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(version: 20190214213810) do
     t.boolean "accepted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "opened"
     t.index ["hint_request_id"], name: "index_hints_on_hint_request_id"
     t.index ["team_id"], name: "index_hints_on_team_id"
   end

@@ -26,10 +26,12 @@ Rails.application.routes.draw do
         get :queue, path: 'fronta'
       end
       member do
+        get :cancel, path: 'zrusit'
         get :answer, path: 'odpovedet', to: 'hints#new'
         post :answer, path: 'odpovedet', to: 'hints#create'
       end
     end
+    get '/napoveda/:id', to: 'hints#show', as: :hint
   end
 
   get '/pravidla', to: 'pages#show', as: :rules, page: 'rules'

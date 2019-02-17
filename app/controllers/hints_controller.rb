@@ -7,6 +7,14 @@ class HintsController < ApplicationController
   def queue
   end
 
+  def show
+    @hint = Hint.find(params[:id])
+    if @hint
+      @hint.opened = true
+      @hint.save
+    end
+  end
+
   def new
     @hint = Hint.new
   end

@@ -1,9 +1,19 @@
 class BalanceValidator < ActiveModel::Validator
-  def validate(hint_request)
-    if hint_request.team.points < 0
+  def validate(record)
+    if record.team.points < 0
       message = "Pro tuto akci nemáte dostatek bodů " \
-                "(#{hint_request.team.points_was} bodů k dispozici)"
-      hint_request.errors.add(:base, message)
+                "(#{record.team.points_was} bodů k dispozici)"
+      record.errors.add(:base, message)
+    end
+  end
+end
+
+class CancelValidator < ActiveModel::Validator
+  def validate(record)
+    has_opened_hints = record.hints.where(opened: true).exists?
+    if record.cancelled_changed? && record.cancelled && has_opened_hints
+      message = "Tuto žádost o nápovědu už není možné zrušit"
+      record.errors.add(:base, message)
     end
   end
 end
@@ -13,5 +23,5 @@ class HintRequest < ApplicationRecord
   belongs_to :puzzle
   has_many :hints, dependent: :destroy
 
-  validates_with BalanceValidator
+  validates_with BalanceValidator, CancelValidator
 end
