@@ -1,0 +1,48 @@
+!!! 5
+%html
+  %head
+    %title iKolečko
+    %meta{ name: 'viewport', content: 'width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0' }
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body{ data: { controller: "#{controller_name}", action: "#{action_name}" } }
+    .header
+      %i.hamburger.fa.fa-bars
+      .logo-container
+        = link_to image_tag('logo.png', class: 'logo'), root_path
+      %i.fa.fa-envelope
+      %i.fa.fa-user
+    .menu.closed
+      %ul.main-menu
+        - if team_signed_in?
+          = submenu(t(:visits), 'fa fa-map-signs') do
+            = submenu_item(t(:new_visit), new_visit_path)
+            = submenu_item('Příchody a odchody', visits_path)
+          = submenu('Odpovědi', 'fa fa-comment') do
+            = submenu_item(t(:new_answer), new_answer_path)
+            = submenu_item(t(:my_answers), answers_path)
+          = submenu(t(:hints), 'fa fa-question-circle') do
+            = submenu_item('Požádat o nápovědu', new_hint_request_path)
+            = submenu_item('Přijaté nápovědy', hint_requests_path)
+            = submenu_item('Poslat nápovědu jinému týmu', queue_hint_requests_path)
+          = menu_item(t(:map), map_path, 'fa fa-map')
+          = menu_item(t(:teams), teams_path, 'fa fa-users')
+        - else
+          = menu_item(t(:log_in), new_team_session_path, 'fas fa-sign-in-alt')
+          = menu_item(t(:sign_up), new_team_registration_path, 'fa fa-user-plus')
+        = menu_item(t(:rules), rules_path, 'fa fa-gavel')
+        = menu_item(t(:puzzles_and_solutions), puzzles_path, 'fa fa-puzzle-piece')
+        = menu_item(t(:results), results_path, 'fa fa-trophy')
+        = submenu('KoleCZko 2018', 'fa fa-history') do
+          = submenu_item(t(:teams), archive_teams_path('2018'))
+          = submenu_item(t(:results), archive_results_path('2018'))
+          = submenu_item(t(:rules), archive_rules_path('2018'))
+          = submenu_item(t(:puzzles_and_solutions), archive_puzzles_path('2018'))
+        - if team_signed_in?
+          = menu_item(t(:log_out), destroy_team_session_path, 'fas fa-sign-out-alt', method: :delete)
+    .main#main
+      = render_flash(:alert)
+      = render_flash(:success)
+      = render_flash(:notice)
+      = yield

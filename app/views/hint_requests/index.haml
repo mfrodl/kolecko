@@ -1,0 +1,28 @@
+%h1 Nápovědy
+- unless @hint_requests.empty?
+  %table.table
+    %tr
+      %th Šifra
+      %th Tým
+      %th Poznámka
+      %th Odměna
+      %th Nápověda
+    - @hint_requests.each do |hint_request|
+      %tr
+        %td= hint_request.puzzle.full_name
+        %td= hint_request.team.name
+        %td= hint_request.note
+        %td= t(:points, count: hint_request.bounty)
+        %td
+          - if hint_request.cancelled
+            Žádost zrušena
+          - else
+            - opened_hint = hint_request.hints.find_by(opened: true)
+            - if opened_hint
+              = opened_hint.text
+              = star_rating(opened_hint)
+            - else
+              .hint-target
+                - hint_request.hints.each do |hint|
+                  = link_to 'Zobrazit', hint, class: 'show-hint', remote: true
+                = link_to 'Zrušit', cancel_hint_request_path(hint_request)

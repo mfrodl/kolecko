@@ -2,6 +2,10 @@ class HintsController < ApplicationController
   include ControllerParams
 
   def index
+    @hints = current_team.received_hints.where(opened: true)
+    respond_to do |format|
+      format.json { render layout: false }
+    end
   end
 
   def queue
@@ -9,9 +13,15 @@ class HintsController < ApplicationController
 
   def show
     @hint = Hint.find(params[:id])
+
     if @hint
       @hint.opened = true
       @hint.save
+
+      respond_to do |format|
+        format.js { render layout: false }
+        format.json { render layout: false }
+      end
     end
   end
 
@@ -36,6 +46,13 @@ class HintsController < ApplicationController
   end
 
   def update
+    @hint = Hint.find(params[:id])
+
+    respond_to do |format|
+      if @hint.update(hint_params)
+        format.js { render layout: false }
+      end
+    end
   end
 
   def destroy

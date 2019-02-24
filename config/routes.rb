@@ -31,7 +31,7 @@ Rails.application.routes.draw do
         post :answer, path: 'odpovedet', to: 'hints#create'
       end
     end
-    get '/napoveda/:id', to: 'hints#show', as: :hint
+    resources :hints, path: 'napoveda', only: [:index, :show, :update]
   end
 
   get '/pravidla', to: 'pages#show', as: :rules, page: 'rules'

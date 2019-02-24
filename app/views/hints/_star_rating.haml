@@ -1,0 +1,6 @@
+= form_with model: hint, class: 'star-rating-form', data: { 'hint': hint.id } do |form|
+  = form.hidden_field :rating, value: 0, class: 'rating'
+  .star-rating
+    - (1..5).each do |i|
+      .star{ data: { rating: "#{i}" } }
+        %i.far.fa-star

@@ -9,7 +9,7 @@ module ControllerParams
     end
 
     def hint_params
-      params.require(:hint).permit(:text, :hint_request_id)
+      params.require(:hint).permit(:text, :rating, :hint_request_id)
     end
 
     def puzzle_params

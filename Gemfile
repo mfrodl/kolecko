@@ -17,6 +17,7 @@ gem 'jquery-rails', '~> 4.3.3'
 gem 'jquery-ui-rails', '~> 6.0.1'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'haml', '~> 5.0.4'
 
 gem 'devise', '~> 4.4.3'
 
