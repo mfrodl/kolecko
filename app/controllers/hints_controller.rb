@@ -15,7 +15,7 @@ class HintsController < ApplicationController
     @hint = Hint.find(params[:id])
 
     if @hint
-      @hint.opened = true
+      @hint.open
       @hint.save
 
       respond_to do |format|
@@ -31,7 +31,7 @@ class HintsController < ApplicationController
 
   def create
     @hint = Hint.new(hint_params)
-    @hint.team = current_team
+    @hint.from_team = current_team
 
     if @hint.save
       flash[:success] = 'Nápověda odeslána'
