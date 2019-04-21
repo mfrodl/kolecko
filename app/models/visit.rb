@@ -4,6 +4,7 @@ class Visit < ApplicationRecord
   has_many :answers
   has_many :hint_requests
   has_many :solutions, through: :answers
+  has_many :hints, through: :hint_requests
 
   validates :puzzle, uniqueness: { scope: :team }
 
