@@ -94,7 +94,7 @@ $(document).on('turbolinks:load', function() {
 
 function togglePuzzleSolution(num) {
   var el = document.getElementById('puzzle_solution_' + num)
-  if (el.style.display == "none")
+  if (el.style.display != "inline")
     el.style.display = "inline";
   else
     el.style.display = "none";
@@ -102,7 +102,7 @@ function togglePuzzleSolution(num) {
 
 function togglePuzzleHint(num) {
   var el = document.getElementById('puzzle_hint_' + num)
-  if (el.style.display == "none")
+  if (el.style.display != "inline")
     el.style.display = "inline";
   else
     el.style.display = "none";

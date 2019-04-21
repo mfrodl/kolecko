@@ -10,3 +10,8 @@
 .puzzle_solution, .puzzle_hint {
    display: none;
 }
+
+.hint_link:hover, .solution_link:hover {
+   color: #ffff00;
+   cursor: pointer;
+}
