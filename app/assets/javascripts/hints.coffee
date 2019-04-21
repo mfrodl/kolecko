@@ -5,7 +5,7 @@
 $(document).on 'turbolinks:load', ->
   $('.show-hint').on 'ajax:success', (event) ->
     [data, status, xhr] = event.detail
-    $(this).closest('.hint-target').html(hintText + hintRatingForm + acceptHint);
+    $(this).closest('.hint-target').html(hintText + hintRatingForm + acceptHintLink);
 
   $('.accept-hint-link').on 'ajax:success', (event) ->
     [data, status, xhr] = event.detail
