@@ -1,6 +1,6 @@
 class Hint < ApplicationRecord
   belongs_to :from_team, foreign_key: :team_id, class_name: 'Team', autosave: true
-  belongs_to :hint_request
+  belongs_to :hint_request, autosave: true
   has_one :to_team, through: :hint_request, source: :team, autosave: true
 
   validates :text, presence: true, allow_blank: false
@@ -20,5 +20,9 @@ class Hint < ApplicationRecord
     bounty_rest = hint_request.bounty - hint_request.bounty / 3
     from_team.points += bounty_rest
     to_team.points -= bounty_rest
+  end
+
+  before_save prepend: true do
+    self.hint_request.closed = true if self.opened?
   end
 end
