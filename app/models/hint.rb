@@ -17,7 +17,7 @@ class Hint < ApplicationRecord
 
   def accept
     self.accepted = true
-    bounty_rest = bounty - bounty / 3
+    bounty_rest = hint_request.bounty - hint_request.bounty / 3
     from_team.points += bounty_rest
     to_team.points -= bounty_rest
   end

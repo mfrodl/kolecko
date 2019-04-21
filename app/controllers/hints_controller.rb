@@ -55,6 +55,20 @@ class HintsController < ApplicationController
     end
   end
 
+  def accept
+    @hint = Hint.find(params[:id])
+
+    if @hint
+      @hint.accept
+      @hint.save
+
+      respond_to do |format|
+        format.js { render layout: false }
+        format.json { render layout: false }
+      end
+    end
+  end
+
   def destroy
   end
 end

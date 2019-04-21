@@ -31,7 +31,11 @@ Rails.application.routes.draw do
         post :answer, path: 'odpovedet', to: 'hints#create'
       end
     end
-    resources :hints, path: 'napoveda', only: [:index, :show, :update]
+    resources :hints, path: 'napoveda', only: [:index, :show, :update] do
+      member do
+        get :accept, path: 'prijmout'
+      end
+    end
   end
 
   get '/pravidla', to: 'pages#show', as: :rules, page: 'rules'
