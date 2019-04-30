@@ -26,5 +26,7 @@
             - else
               .hint-target
                 - hint_request.hints.each do |hint|
-                  = link_to 'Zobrazit', hint, class: 'show-hint', remote: true
-                = link_to 'Zrušit', cancel_hint_request_path(hint_request)
+                  = link_to "Zobrazit nápovědu", hint, class: 'show-hint', remote: true
+                  = "(kvalita: #{hint.from_team.hint_quality})"
+                  %br
+                = link_to 'Zrušit žádost', cancel_hint_request_path(hint_request)
