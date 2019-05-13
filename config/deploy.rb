@@ -16,8 +16,19 @@ set :pty, false
 set :rbenv_type, :system
 set :rbenv_ruby, '2.6.1'
 
+set :migration_role, :app
+
 set :rails_env, :production
 set :linked_files, %w[config/database.yml config/secrets.yml]
+
+# Defaults to false
+# Skip migration if files in db/migrate were not modified
+set :conditionally_migrate, true
+
+# Defaults to nil (no asset cleanup is performed)
+# If you use Rails 4+ and you'd like to clean up old assets after each deploy,
+# set this to the number of versions to keep
+set :keep_assets, 5
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w[bin log tmp uploads public/assets config/secret]
