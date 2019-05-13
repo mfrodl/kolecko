@@ -11,7 +11,7 @@ production:
   - bundle install --quiet
   - bundle exec cap production deploy
   only:
-  - deployment
+  - master
 
 rubocop:
   stage: test
