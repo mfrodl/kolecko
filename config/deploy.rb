@@ -23,7 +23,7 @@ set :linked_files, %w[config/database.yml config/secrets.yml]
 
 # Defaults to false
 # Skip migration if files in db/migrate were not modified
-set :conditionally_migrate, true
+set :conditionally_migrate, false
 
 # Defaults to nil (no asset cleanup is performed)
 # If you use Rails 4+ and you'd like to clean up old assets after each deploy,
@@ -35,6 +35,15 @@ set :linked_dirs, %w[bin log tmp uploads public/assets config/secret]
 
 namespace :deploy do
   after :finishing, 'deploy:cleanup'
+
+  desc 'Copy statiic files to shared directory'
+  task :copy_static_files do
+    on release_roles :app do
+      fetch(:deploy_to).tap do |path|
+        execute :rsync, "--recursive", "public/", File.join(path, "shared", "public", "")
+      end
+    end
+  end
 
   desc 'Symlink linked directories'
   task :linked_paths do
@@ -79,4 +88,5 @@ namespace :deploy do
 
   after :publishing, 'deploy:restart'
   after :check, 'deploy:linked_paths'
+  after :check, 'deploy:copy_static_files'
 end
