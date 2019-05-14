@@ -5,7 +5,7 @@
 
   <div class="field">
     <%= f.label :name, t(:team_name) %><br>
-    <%= f.text_field :name, autofocus: true, value: 'test' %>
+    <%= f.text_field :name, autofocus: true %>
     <% resource.errors[:name].each do |error| %>
       <div><%= "#{error}" %></div>
     <% end %>
@@ -13,23 +13,23 @@
 
   <div class="field">
     <%= f.label :password, t(:password) %><br>
-    <%= f.password_field :password, value: 'password' %>
+    <%= f.password_field :password %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation, t(:password_confirmation) %><br>
-    <%= f.password_field :password_confirmation, value: 'password' %>
+    <%= f.password_field :password_confirmation %>
   </div>
 
   <% for player in ['player1', 'player2', 'player3', 'player4'] %>
     <div class="field">
      <%= f.label "#{player}_name".to_sym, t(:player_name) %><br>
-      <%= f.text_field "#{player}_name".to_sym, value: player %>
+      <%= f.text_field "#{player}_name".to_sym %>
     </div>
 
     <div class="field">
       <%= f.label "#{player}_email".to_sym, t(:email) %><br>
-      <%= f.email_field "#{player}_email".to_sym, value: "#{player}@example.com" %>
+      <%= f.email_field "#{player}_email".to_sym %>
     </div>
   <% end %>
 
