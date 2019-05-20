@@ -22,7 +22,7 @@ html, body {
 body {
     color: #ffffff;
     background-color: #222222;
-    font-family: Falling Sky;
+    font-family: Open Sans, sans-serif;
     font-size: 18px;
 }
 
@@ -97,30 +97,6 @@ p.success {
 
 p.alert {
   background: #770000;
-}
-
-@font-face {
-  font-family: 'Falling Sky';
-  src: font-url('FallingSkyLight.otf');
-}
-
-@font-face {
-  font-family: 'Falling Sky';
-  src: font-url('FallingSkyBd.otf');
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: 'Falling Sky';
-  src: font-url('FallingSkyLightObl.otf');
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Falling Sky';
-  src: font-url('FallingSkyBdObl.otf');
-  font-weight: bold;
-  font-style: italic;
 }
 
 .table, .table th, .table td {
