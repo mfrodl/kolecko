@@ -31,7 +31,7 @@ set :conditionally_migrate, false
 set :keep_assets, 5
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w[bin log tmp uploads public/assets config/secret]
+set :linked_dirs, %w[log tmp uploads public/assets config/secret]
 
 namespace :deploy do
   after :finishing, 'deploy:cleanup'
