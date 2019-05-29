@@ -4,6 +4,7 @@
     %title iKolečko
     %meta{ name: 'viewport', content: 'width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0' }
     = csrf_meta_tags
+    = stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body{ data: { controller: "#{controller_name}", action: "#{action_name}" } }
@@ -11,8 +12,10 @@
       %i.hamburger.fa.fa-bars
       .logo-container
         = link_to image_tag('logo.png', class: 'logo'), root_path
-      %i.fa.fa-envelope
-      %i.fa.fa-user
+      - if team_signed_in?
+        /=%i.fa.fa-envelope
+        = link_to team_path(current_team) do
+          %i.fa.fa-user
     .menu.closed
       %ul.main-menu
         - if team_signed_in?
