@@ -17,6 +17,7 @@ cs:
       not_locked: "nebyl uzamčen"
       not_saved:
         one: "%{resource} nebyl uložen kvůli chybě:"
+        few: "%{resource} nebyl uložen kvůli %{count} chybám:"
         other: "%{resource} nebyl uložen kvůli %{count} chybám:"
       confirmation_period_expired: "musí být potvrzen během %{period}, požádejte prosím o nový"
 

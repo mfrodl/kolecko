@@ -39,6 +39,8 @@ cs:
         solution: 'Řešení'
       team:
         name: 'Název týmu'
+        password: 'Heslo'
+        password_confirmation: 'Hesla'
       hint:
         text: 'Text nápovědy'
       hint_request:
