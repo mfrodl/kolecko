@@ -3,7 +3,7 @@
 
 require 'pathname'
 
-ROOT_DIR = Pathname.new(File.dirname(__FILE__) + '/../').realpath
+ROOT_DIR = Pathname.new(File.dirname(__FILE__) + '/../../').realpath
 
 # The directory to operate out of.
 directory ROOT_DIR
