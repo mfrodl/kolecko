@@ -10,7 +10,8 @@ class Team < ApplicationRecord
   has_many :sent_hints, class_name: 'Hint'
 
   validates :name, presence: true, uniqueness: true
-  validates_presence_of :password
+  validates_presence_of :password, :player1_name, :player1_email
+
   validates_confirmation_of :password, message: 'se musí shodovat'
 
   def email_required?
