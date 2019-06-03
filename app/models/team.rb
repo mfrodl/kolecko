@@ -11,8 +11,11 @@ class Team < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates_presence_of :password, :player1_name, :player1_email
-
   validates_confirmation_of :password, message: 'se musí shodovat'
+  validates :phone, format: {
+    with: /\A[0-9]{9}\z/,
+    message: 'je v neplatném formátu'
+  }
 
   def email_required?
     false

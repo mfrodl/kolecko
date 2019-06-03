@@ -41,6 +41,7 @@ cs:
         name: 'Název týmu'
         password: 'Heslo'
         password_confirmation: 'Hesla'
+        phone: 'Telefon'
         player1_name: 'Jméno hráče'
         player1_email: 'E-mail'
       hint:

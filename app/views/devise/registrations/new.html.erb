@@ -21,6 +21,11 @@
     <%= f.password_field :password_confirmation %>
   </div>
 
+  <div class="field">
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone, maxlength: 9, size: nil %>
+  </div>
+
   <% for player in ['player1', 'player2', 'player3', 'player4'] %>
     <div class="field">
      <%= f.label "#{player}_name".to_sym, t(:player_name) %><br>

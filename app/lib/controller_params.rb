@@ -18,7 +18,7 @@ module ControllerParams
 
     def team_params
       params.require(:team).permit(
-        :name, :phone, :password, :player1_name, :player1_email,
+        :name, :phone, :password, :phone, :player1_name, :player1_email,
         :player2_name, :player2_email, :player3_name, :player3_email,
         :player4_name, :player4_name
       )

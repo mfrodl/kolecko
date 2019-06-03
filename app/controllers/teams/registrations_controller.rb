@@ -48,6 +48,7 @@ class Teams::RegistrationsController < Devise::RegistrationsController
   def configure_sign_up_params
     devise_parameter_sanitizer.permit :sign_up,
       keys: [
+        :phone,
         :player1_name, :player1_email,
         :player2_name, :player2_email,
         :player3_name, :player3_email,
