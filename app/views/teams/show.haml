@@ -1,26 +1,37 @@
 %h1
   = @team.name
-%ul
-  - unless @team.player1_name.empty?
-    %li
-      = @team.player1_name
-      - unless @team.player1_email.empty?
-        = "(#{@team.player1_email})"
 
-  - unless @team.player2_name.empty?
-    %li
-      = @team.player2_name
-      - unless @team.player2_email.empty?
-        = "(#{@team.player2_email})"
+%table.table
+  %tr
+    %td Seznam hráčů
+    %td
+      - unless @team.player1_name.empty?
+        = @team.player1_name
+        - unless @team.player1_email.empty?
+          = "(#{@team.player1_email})"
 
-  - unless @team.player3_name.empty?
-    %li
-      = @team.player3_name
-      - unless @team.player3_email.empty?
-        = "(#{@team.player3_email})"
+      - unless @team.player2_name.empty?
+        %br
+        = @team.player2_name
+        - unless @team.player2_email.empty?
+          = "(#{@team.player2_email})"
 
-  - unless @team.player4_name.empty?
-    %li
-      = @team.player4_name
-      - unless @team.player4_email.empty?
-        = "(#{@team.player4_email})"
+      - unless @team.player3_name.empty?
+        %br
+        = @team.player3_name
+        - unless @team.player3_email.empty?
+          = "(#{@team.player3_email})"
+
+      - unless @team.player4_name.empty?
+        %br
+        = @team.player4_name
+        - unless @team.player4_email.empty?
+          = "(#{@team.player4_email})"
+
+  %tr
+    %td Telefon
+    %td
+      = @team.phone
+
+%p
+  = link_to 'Úprava údajů', edit_team_registration_path

@@ -58,7 +58,18 @@ class Teams::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:player1_name])
+    devise_parameter_sanitizer.permit :account_update,
+      keys: [
+        :phone,
+        :player1_name, :player1_email,
+        :player2_name, :player2_email,
+        :player3_name, :player3_email,
+        :player4_name, :player4_email,
+      ]
+  end
+
+  def update_resource(resource, params)
+    resource.update_without_password(params)
   end
 
   # The path used after sign up.

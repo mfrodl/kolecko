@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       sign_in: 'prihlaseni',
       sign_out: 'odhlaseni',
       sign_up: 'registrace',
+      edit: 'uprava_udaju'
     },
     controllers: {
       sessions: 'teams/sessions',
