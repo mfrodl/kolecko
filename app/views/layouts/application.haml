@@ -30,6 +30,7 @@
           /=   = submenu_item('Přijaté nápovědy', hint_requests_path)
           /=   = submenu_item('Poslat nápovědu jinému týmu', queue_hint_requests_path)
           /= = menu_item(t(:map), map_path, 'fa fa-map')
+          = menu_item('Tým', team_path(current_team), 'fa fa-user')
           = menu_item(t(:teams), teams_path, 'fa fa-users')
         - else
           = menu_item(t(:log_in), new_team_session_path, 'fas fa-sign-in-alt')
