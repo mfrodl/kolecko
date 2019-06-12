@@ -25,7 +25,7 @@ class TeamsController < ApplicationController
   end
 
   def index
-    @teams = Team.all
+    @teams = Team.where(admin: false)
   end
 
   private
