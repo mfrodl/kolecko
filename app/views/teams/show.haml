@@ -36,5 +36,10 @@
     %td
       = @team.phone
 
+  %tr
+    %td Zaplaceno
+    %td
+      = @team.payed? ? 'Ano' : 'Ne'
+
 %p
   = link_to 'Úprava údajů', edit_team_registration_path
