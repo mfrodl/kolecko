@@ -26,6 +26,12 @@ class TeamsController < ApplicationController
 
   def index
     @teams = Team.where(admin: false)
+
+    respond_to do |format|
+      format.js { render layout: false }
+      format.json { render layout: false }
+      format.html
+    end
   end
 
   private
