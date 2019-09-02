@@ -1,6 +1,11 @@
 class HintValidator < ActiveModel::Validator
   def validate(record)
     hints = record.visit.hints
+
+    unless hints.any?
+      return
+    end
+
     unrated_hints = hints.where(opened: true, rating: nil)
     if unrated_hints.exists?
       message = "Nejprve ohodnoťte hvězdičkami všechny přijaté nápovědy"
