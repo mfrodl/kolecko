@@ -1,6 +1,6 @@
 class BalanceValidator < ActiveModel::Validator
   def validate(record)
-    if record.team.points < record.bounty
+    if record.team.points < 0
       message = "Pro tuto akci nemáte dostatek bodů " \
                 "(#{record.team.points_was} bodů k dispozici)"
       record.errors.add(:base, message)
