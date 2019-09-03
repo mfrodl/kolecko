@@ -41,5 +41,15 @@
     %td
       = @team.payed? ? 'Ano' : 'Ne'
 
+  %tr
+    %td iKolečko coins
+    %td
+      = @team.points
+
+  %tr
+    %td Průměrné hodnocení mých nápověd
+    %td
+      = @team.hint_quality
+
 %p
   = link_to 'Úprava údajů', edit_team_registration_path
