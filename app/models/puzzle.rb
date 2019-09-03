@@ -15,6 +15,6 @@ class Puzzle < ApplicationRecord
   end
 
   def full_name
-    "#{number}. #{name}"
+    name
   end
 end
