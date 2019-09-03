@@ -33,7 +33,11 @@ class Team < ApplicationRecord
   def hint_quality
     # Average rating of hints sent by the team that have a rating. If no rated
     # hint exists yet, default to 3 stars.
-    '%.1f' % sent_hints.average(:rating) || 3.0
+    if sent_hints.average(:rating)
+      '%.1f' % sent_hints.average(:rating)
+    else
+      3.0
+    end
   end
 
   def update_without_password(params, *options)
