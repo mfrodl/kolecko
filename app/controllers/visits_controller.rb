@@ -2,7 +2,7 @@ class VisitsController < ApplicationController
   include ControllerParams
 
   def index
-    @visits = Visit.where(team: current_team).sort_by {|visit| visit.puzzle.number}
+    @visits = Visit.where(team: current_team).sort_by(&:created_at)
   end
 
   def map
