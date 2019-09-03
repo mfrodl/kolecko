@@ -26,7 +26,7 @@ class HintRequestsController < ApplicationController
       return
     end
 
-    @visit = Visit.find_by(puzzle: @puzzle)
+    @visit = Visit.find_by(team: current_team, puzzle: @puzzle)
     if !@visit
       flash[:alert] = 'Nejprve musíte odeslat svůj příchod na stanoviště'
       redirect_to new_visit_path
