@@ -42,7 +42,7 @@ class HintRequestsController < ApplicationController
     end
 
     @hint_request.visit = @visit
-    current_team.points -= hint_request_params[:bounty].to_i
+    @hint_request.team.points -= @hint_request.bounty
 
     if @hint_request.save
       flash[:success] = 'Žádost úspěšně odeslána'
