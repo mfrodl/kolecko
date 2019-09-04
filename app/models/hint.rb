@@ -1,3 +1,11 @@
+class FrozenRatingValidator < ActiveModel::Validator
+  def validate(record)
+    if record.rating_was && record.rating != record.rating_was
+      record.errors[:base] << "Nápověda už byla ohodnocena"
+    end
+  end
+end
+
 class Hint < ApplicationRecord
   belongs_to :from_team, foreign_key: :team_id, class_name: 'Team', autosave: true
   belongs_to :hint_request, autosave: true
@@ -7,6 +15,8 @@ class Hint < ApplicationRecord
   validates :rating, numericality: { greater_than_or_equal_to: 1,
                                      less_than_or_equal_to: 5,
                                      allow_nil: true }
+
+  validates_with FrozenRatingValidator
 
   def open
     self.opened = true
