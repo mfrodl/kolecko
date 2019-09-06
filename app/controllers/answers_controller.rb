@@ -89,9 +89,21 @@ class AnswersController < ApplicationController
             end
 
           else
-            flash[:alert] = 'Špatná odpověď'
-            #FIXME: Substract points here if too many bad answers
+            # Substract points here if too many bad answers
+            # With the exception of puzzles which have more answers
             @visit.wrong_answers += 1
+            if @visit.wrong_answers == 3 && @puzzle.solutions.count == 1
+              flash[:alert] = 'Třetí špatná odpověď, za každou další špatnou odpověď bude strhnuto 5 OCoinů.'
+            elsif @visit.wrong_answers > 3 && @puzzle.solutions.count == 1
+              flash[:alert] = 'Špatná odpověď, odečteno 5 OCoinů.'
+              current_team.points -= 5
+              current_team.save
+              ot = OcoinTransaction.new(team: current_team, points: -5,
+                                        message: 'Opakovaná špatná odpověď k šifře %s' % @puzzle.name)
+              ot.save
+            else
+              flash[:alert] = 'Špatná odpověď'
+            end
           end
           @visit.save
         else
