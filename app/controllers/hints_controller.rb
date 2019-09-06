@@ -58,6 +58,13 @@ class HintsController < ApplicationController
 
     if @hint.update(hint_params)
       flash[:success] = 'Hodnocení odesláno'
+      amount = @hint.hint_request.bounty * (@hint.rating - 1) / 10
+      @hint.from_team.points += amount
+      @hint.from_team.save
+      ot = OcoinTransaction.new(team: @hint.from_team, points: amount,
+                                message: 'Ohodnocena nápověda k šifře %s' \
+                                % @hint.hint_request.visit.puzzle.name)
+      ot.save
     else
       flash[:alert] = 'Hodnocení se nepodařilo odeslat'
     end

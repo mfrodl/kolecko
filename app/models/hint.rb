@@ -30,19 +30,6 @@ class Hint < ApplicationRecord
     self.hint_request.save
   end
 
-  def accept
-    #FIXME: this path is no longer active
-    #needs to be moved to the hint_update codepath
-    self.accepted = true
-    #FIXME: the amount should be based on hint rating
-    amount = hint_request.bounty - hint_request.bounty * 3 / 10
-    from_team.points += amount
-    ot = OcoinTransaction.new(team: from_team, points: amount,
-                              message: 'Ohodnocena nápověda k šifře %s' \
-                              % hint_request.visit.puzzle.name)
-    ot.save
- end
-
   before_save prepend: true do
     self.hint_request.closed = true if self.opened?
   end
