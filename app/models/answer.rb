@@ -8,7 +8,7 @@ class HintValidator < ActiveModel::Validator
 
     unrated_hints = hints.where(opened: true, rating: nil)
     if unrated_hints.exists?
-      message = "Nejprve ohodnoťte hvězdičkami všechny přijaté nápovědy"
+      message = "Nejprve ohodnoťte hvězdičkami všechny přijaté nápovědy k této šifře."
       record.errors.add(:base, message)
     end
 
