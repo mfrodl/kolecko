@@ -43,8 +43,8 @@
       <%# Find hints from us! %>
         <% if hint %>
           <% if hint.opened == true %>
-            <% if hint.accepted == true %>
-              <% status = 'Ohodnocena: %.0f' % (hint.rating || -1.0) %>
+            <% if hint.rating %>
+              <% status = 'Ohodnocena: %.0f' % hint.rating %>
             <% else %>
               <% status = 'Otevřena' %>
             <% end %>
