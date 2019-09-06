@@ -89,34 +89,6 @@ class HintRequestsController < ApplicationController
   end
 
   def cancel
-    if count == 0
-      amount = @hint_request.bounty * 7 / 10
-      @hint_request.team.points += amount
-      ot = OcoinTransaction.new(team: current_team, points: amount,
-                                message: '70% bodů zpět za nevyužitou nápovědu k šifře %s' \
-                                % @hint_request.visit.puzzle.name)
-      ot.save
-    # else split it between all teams which sent hints
-    else
-      @hint_request.hints.each do |h|
-        t = Team.find_by(id: h.team_id)
-        amount = @hint_request.bounty * 7 / 10 / count
-        ot = OcoinTransaction.new(team: t, points: amount,
-                                  message: '70% bodů zpět za nápovědu k šifře %s' \
-                                  % @hint_request.visit.puzzle.name)
-        ot.save
-        t.points += amount
-        t.save
-      end
-    end
-
-    if @hint_request.save
-      flash[:success] = 'Úspěšně zrušeno'
-    else
-      flash[:alert] = @hint_request.errors.full_messages.join('<br>')
-    end
-
-    redirect_to hint_requests_path
   end
 
   def destroy
