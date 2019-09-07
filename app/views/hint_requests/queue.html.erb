@@ -9,12 +9,22 @@
       <th>Nápověda</th>
     </tr>
     <% @hint_requests.each do |hint_request| %>
-      <%# Active are the ones with no hints, no opeded hint, or no hints from us! %>
-      <% c = hint_request.hints.count %>
+      <%# Active are the ones with no opeded hint, or no hints from us! %>
       <% no_opened = (hint_request.hints.where(opened: nil).count == hint_request.hints.count)  %>
       <% from_us = hint_request.hints.where(team_id: current_team.id).count %>
       <%# FIXME: the last one needs to be checked also later, since ATM two hints can be send from two browser instances! %>
-      <% if c == 0 || (no_opened && from_us < 1) %>
+      <%# Also check we haven't send any hint to this team for this puzzle! And  %>
+      <% no_hint_to_this_team = true %>
+      <% hinted_count = 0 %>
+      <% @hints_from_me.each do |hint| %>
+        <% if hint.opened == true && hint.hint_request.puzzle == hint_request.puzzle %>
+          <% if hint.hint_request.team == hint_request.team %>
+            <% no_hint_to_this_team = false %>
+          <% end %>
+            <% hinted_count += 1 %>
+        <% end %>
+      <% end %>
+      <% if no_opened && from_us < 1 && no_hint_to_this_team && hinted_count < 2 %>
         <%# Check if we have solved this puzzle! %>
         <% have_visit = current_team.visits.find_by(puzzle_id: hint_request.puzzle.id) %>
         <% if have_visit and have_visit.solved? %>
