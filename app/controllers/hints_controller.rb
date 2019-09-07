@@ -34,7 +34,9 @@ class HintsController < ApplicationController
     @hint.from_team = current_team
     @request = @hint.hint_request
 
-    if @hint.hint_request.cancelled
+    if @request.hints.where(from_team: current_team).count > 0
+      flash[:alert] = 'Již jste nápovědu odeslali'
+    elsif @hint.hint_request.cancelled
       flash[:alert] = 'Žádost o nápovědu byla zrušena'
     elsif @hint.hint_request.closed
       flash[:alert] = 'Žádost o nápovědu již není aktivní (tým využil nápovědu od někoho jiného)'

@@ -12,7 +12,6 @@
       <%# Active are the ones with no opeded hint, or no hints from us! %>
       <% no_opened = (hint_request.hints.where(opened: nil).count == hint_request.hints.count)  %>
       <% from_us = hint_request.hints.where(team_id: current_team.id).count %>
-      <%# FIXME: the last one needs to be checked also later, since ATM two hints can be send from two browser instances! %>
       <%# Also check we haven't send any hint to this team for this puzzle! And  %>
       <% no_hint_to_this_team = true %>
       <% hinted_count = 0 %>
