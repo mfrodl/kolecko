@@ -1,14 +1,11 @@
 <h1>Požádat o nápovědu</h1>
 
-<% unsolved_visits = current_team.visits.where(solved_at: [nil]) %>
-<% if not unsolved_visits.empty? %>
-  <% unsolved_puzzles = unsolved_visits.map{ |v| [v.puzzle.full_name, v.puzzle.code]} %>
-
+<% if not @unsolved_puzzles.empty? %>
   <%= form_for @hint_request, url: {action: 'create'} do |form| %>
     <%= fields_for :puzzle, @hint_request.puzzle do |puzzle_fields| %>
       <div class="select">
         <%= puzzle_fields.label :code, 'Název šifry'%><br>
-        <%= puzzle_fields.select :code, unsolved_puzzles %>
+        <%= puzzle_fields.select :code, @unsolved_puzzles %>
       </div>
     <% end %>
 

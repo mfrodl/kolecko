@@ -15,6 +15,13 @@ class HintRequestsController < ApplicationController
 
   def new
     @hint_request = HintRequest.new
+    unsolved_visits = current_team.visits.where(solved_at: [nil])
+    @unsolved_puzzles = []
+    unsolved_visits.each do |v|
+      if v.puzzle.solutions.count == 1
+        @unsolved_puzzles << [v.puzzle.full_name, v.puzzle.code]
+      end
+    end
   end
 
   def create
