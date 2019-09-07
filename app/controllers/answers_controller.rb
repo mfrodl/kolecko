@@ -52,8 +52,7 @@ class AnswersController < ApplicationController
                   amount = @hint_request.bounty * 7 / 10
                   current_team.points += amount
                   ot = OcoinTransaction.new(team: current_team, points: amount,
-                                message: '70% bodů zpět za nevyužitou nápovědu k šifře %s' \
-                                % @hint_request.visit.puzzle.name)
+                       message: 'Vrácená část bodů za nevyužitou nápovědu k šifře %s' % @hint_request.visit.puzzle.name)
                   ot.save
 
                 # else split it between all teams which sent hints
