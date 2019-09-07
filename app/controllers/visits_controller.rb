@@ -23,7 +23,9 @@ class VisitsController < ApplicationController
     if @puzzle
       @visit = Visit.new(puzzle: @puzzle, team: current_team)
       if @visit.save
+        flash[:success] = 'Příchod na stanoviště úspěšně zaznamenán'
         if @puzzle.puztype == "secondary"
+          flash[:success] << ', přičteno %i OCoinů' % @puzzle.points
           current_team.points += @puzzle.points
           ot = OcoinTransaction.new(team: current_team, points: @puzzle.points,
                                     message: 'Vyzvednutí šifry %s' % @puzzle.name)

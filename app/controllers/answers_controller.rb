@@ -87,6 +87,10 @@ class AnswersController < ApplicationController
               flash[:success] << " (#{found_solutions}/#{total_solutions})"
             end
 
+            if @puzzle.puztype == 'secondary'
+              flash[:success] << ", přičteno %i OCoinů" % @answer.solution.points
+            end
+
           else
             # Substract points here if too many bad answers
             # With the exception of puzzles which have more answers
