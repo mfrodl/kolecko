@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   end
 
   get '/pravidla', to: 'pages#show', as: :rules, page: 'rules'
-  get '/vysledky', to: 'pages#show', as: :results, page: 'results'
+  get '/vysledky', to: 'teams#results', as: :results, page: 'results'
 
   scope '/archiv/:year' do
     get '/vysledky', to: 'pages#show', as: :archive_results, page: 'results'

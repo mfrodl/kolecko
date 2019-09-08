@@ -1,0 +1,20 @@
+<h1>Průběžné pořadí týmů</h1>
+<table class="table">
+  <tr>
+    <th>Pořadí</th>
+    <th>Název týmu</th>
+    <th>Cílová šifra</th>
+    <th>Počet hlavních šifer</th>
+    <th>Počet bodů</th>
+  </tr>
+<% i = 0 %>
+<% @teams.each do |team| %>
+  <tr>
+    <td><%= i += 1 %>.</td>
+    <td><%= team.name %></td>
+    <td><%= team.solved_final_puzzle %></td>
+    <td><%= team.solved_main_puzzles %></td>
+    <td><%= team.points %></td>
+  </tr>
+<% end %>
+</table>

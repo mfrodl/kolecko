@@ -41,6 +41,10 @@ class TeamsController < ApplicationController
   def inbox
   end
 
+  def results
+    @teams = Team.order(solved_final_puzzle: :desc, solved_main_puzzles: :desc, points: :desc)
+  end
+
   private
     def skip_authenticate_team
       action_name == 'index' && request.format.json?
