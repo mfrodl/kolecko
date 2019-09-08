@@ -75,7 +75,7 @@ class AnswersController < ApplicationController
             if @puzzle.puztype == 'main'
               current_team.solved_main_puzzles += 1
             elsif @puzzle.puztype == 'final'
-              current_team.solved_final_puzzle += true
+              current_team.solved_final_puzzle = true
             elsif @puzzle.puztype == 'secondary'
               current_team.points += @answer.solution.points
               ot = OcoinTransaction.new(team: current_team, points: @answer.solution.points,
