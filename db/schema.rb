@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190906160035) do
+ActiveRecord::Schema.define(version: 20190908160359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,8 +123,15 @@ ActiveRecord::Schema.define(version: 20190906160035) do
     t.string "last_sign_in_ip"
     t.integer "points", default: 0
     t.boolean "admin", default: false, null: false
+    t.integer "solved_main_puzzles", default: 0
+    t.boolean "solved_final_puzzle", default: false, null: false
     t.index ["name"], name: "index_teams_on_name", unique: true
     t.index ["reset_password_token"], name: "index_teams_on_reset_password_token", unique: true
+  end
+
+  create_table "unlocked_mains", force: :cascade do |t|
+    t.bigint "team_id"
+    t.bigint "puzzle_id"
   end
 
   create_table "visits", force: :cascade do |t|

@@ -6,6 +6,7 @@ class Team < ApplicationRecord
 
   has_many :visits, dependent: :destroy
   has_many :ocoin_transactions, dependent: :destroy
+  has_many :unlocked_mains, dependent: :destroy
   has_many :answers, through: :visits
   has_many :hint_requests, through: :visits
   has_many :received_hints, through: :hint_requests, source: :hints

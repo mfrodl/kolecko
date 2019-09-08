@@ -72,11 +72,16 @@ class AnswersController < ApplicationController
               end
             end
 
-            ot = OcoinTransaction.new(team: current_team, points: @answer.solution.points,
-                                     message: 'Řešení šifry %s' % @puzzle.name)
-            ot.save
-
-            current_team.points += @answer.solution.points
+            if @puzzle.puztype == 'main'
+              current_team.solved_main_puzzles += 1
+            elsif @puzzle.puztype == 'final'
+              current_team.solved_final_puzzle += true
+            elsif @puzzle.puztype == 'secondary'
+              current_team.points += @answer.solution.points
+              ot = OcoinTransaction.new(team: current_team, points: @answer.solution.points,
+                                       message: 'Řešení šifry %s' % @puzzle.name)
+              ot.save
+            end
             current_team.save
 
             total_solutions = @puzzle.solutions.count
@@ -89,6 +94,15 @@ class AnswersController < ApplicationController
 
             if @puzzle.puztype == 'secondary'
               flash[:success] << ", přičteno %i OCoinů" % @answer.solution.points
+            elsif @puzzle.puztype == 'final'
+              flash[:success] << ", úspěšně jste vyřešili cílovou šifru"
+            elsif @puzzle.puztype == 'main'
+              num = Puzzle.where(puztype: 'main').count
+              text = ", vyřešena %i. hlavní šifra ze %i" % [current_team.solved_main_puzzles, num]
+              flash[:success] << text
+              if current_team.solved_main_puzzles == num
+                flash[:success] << ", byla odkryta poloha cíle"
+              end
             end
 
           else

@@ -1,6 +1,33 @@
 <h1>Šifry a řešení</h1>
-<% @puzzles.each do |puzzle| %>
-  <h2><%= puzzle.name %></h2>
+<% if @final_puzzle %>
+  <h2>Cílová šifra</h2>
+    <h3><%= @final_puzzle.name %></h3>
+    <p><em>Kód stanoviště: <%= @final_puzzle.code %></em><br>
+    <em>Řešení:
+    <% @final_puzzle.solutions.each do |s| %>
+      <%= s.text %>,
+    <% end %>
+    <br>
+</p>
+<% end %>
+
+<% if @unlocked_main_puzzles.any? %>
+<h2>Hlavní šifry</h2>
+<% @unlocked_main_puzzles.each do |puzzle| %>
+  <h3><%= puzzle.name %></h3>
+  <p><em>Kód stanoviště: <%= puzzle.code %></em><br>
+  <em>Řešení:
+  <% puzzle.solutions.each do |s| %>
+    <%= s.text %>,
+  <% end %>
+  <br>
+</p>
+<% end %>
+<% end %>
+
+<h2>Vedlejší šifry</h2>
+<% @secondary_puzzles.each do |puzzle| %>
+  <h3><%= puzzle.name %></h3>
   <p><em>Kód stanoviště: <%= puzzle.code %></em><br>
   <em>Body za vyzvednutí: <%= puzzle.points %></em><br>
   <em>Otevírá: <%= puzzle.opens_at %></em><br>
