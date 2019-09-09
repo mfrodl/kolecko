@@ -2,12 +2,8 @@
 <% if @final_puzzle %>
   <h2>Cílová šifra</h2>
     <h3><%= @final_puzzle.name %></h3>
-    <p><em>Kód stanoviště: <%= @final_puzzle.code %></em><br>
-    <em>Řešení:
-    <% @final_puzzle.solutions.each do |s| %>
-      <%= s.text %>,
-    <% end %>
-    <br>
+    <em>Poloha: <%= @final_puzzle.latitude %>N <%= @final_puzzle.longitude %>E </em><br>
+    <em>Popis umístění: <%= @final_puzzle.place %></em>
 </p>
 <% end %>
 
@@ -15,12 +11,9 @@
 <h2>Hlavní šifry</h2>
 <% @unlocked_main_puzzles.each do |puzzle| %>
   <h3><%= puzzle.name %></h3>
-  <p><em>Kód stanoviště: <%= puzzle.code %></em><br>
-  <em>Řešení:
-  <% puzzle.solutions.each do |s| %>
-    <%= s.text %>,
-  <% end %>
-  <br>
+  <p>
+  <em>Poloha: <%= puzzle.latitude %>N <%= puzzle.longitude %>E </em><br>
+  <em>Popis umístění: <%= puzzle.place %></em>
 </p>
 <% end %>
 <% end %>
@@ -28,13 +21,18 @@
 <h2>Vedlejší šifry</h2>
 <% @secondary_puzzles.each do |puzzle| %>
   <h3><%= puzzle.name %></h3>
-  <p><em>Kód stanoviště: <%= puzzle.code %></em><br>
+  <p>
+  <em>Poloha: <%= puzzle.latitude %>N <%= puzzle.longitude %>E</em><br>
+  <em>Popis umístění: <%= puzzle.place %></em><br>
   <em>Body za vyzvednutí: <%= puzzle.points %></em><br>
-  <em>Otevírá: <%= puzzle.opens_at %></em><br>
-  <em>Zavírá: <%= puzzle.closes_at %></em><br>
-  <em>Řešení:
+  <em>Otevírá: <%= puzzle.opens_at.strftime("%d.%m. %H:%M:%S") %></em><br>
+  <em>Zavírá: <%= puzzle.closes_at.strftime("%d.%m. %H:%M:%S")%></em><br>
+  <em>Body za řešení:
   <% puzzle.solutions.each do |s| %>
-    <%= s.text %>,
+    <% if s != puzzle.solutions.first %>
+      ,
+    <% end %>
+    <%= s.points %>
   <% end %>
   <br>
 </p>
