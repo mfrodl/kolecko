@@ -13,6 +13,7 @@
       .logo-container
         = link_to image_tag('logo.png', class: 'logo'), root_path
       - if team_signed_in?
+        = link_to ("%i OC" % current_team.points), ocoins_path
         = mailbox_icon
         = link_to team_path(current_team) do
           %i.fa.fa-user

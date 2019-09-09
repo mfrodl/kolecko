@@ -3,7 +3,7 @@ class UnlockedMainsController < ApplicationController
 
   def new
     #FIXME: this should probably be in some global defines
-    main_puzzle_prize = 150
+    main_puzzle_prize = 145
     if current_team.points < main_puzzle_prize
       flash[:alert] = "Nemáte dostatek OCoinů, je potřeba %i a máte jen %i" % [main_puzzle_prize, current_team.points]
       redirect_to pruchod_hlavni_path
