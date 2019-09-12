@@ -24,7 +24,7 @@
             = submenu('Admin', 'fas fa-user-cog') do
               = submenu_item('Odeslat zprávu týmům', new_message_path)
           /= TODO: Unlock this section automatically when the game begins
-          - if Rails.env.develop?
+          - unless Rails.env.production?
             = submenu(t(:visits), 'fa fa-map-signs') do
               = submenu_item(t(:new_visit), new_visit_path)
               = submenu_item('Příchody a odchody', visits_path)
