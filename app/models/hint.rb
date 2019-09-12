@@ -35,7 +35,10 @@ class Hint < ApplicationRecord
   end
 
   after_create do
-    message = Message.new(text: 'Nová nápověda')
+    message_text = "Nová nápověda k šifře "
+    message_text << link_to(hint_request.puzzle.full_name,
+                            Rails.application.routes.url_helpers.hint_requests_path)
+    message = Message.new(text: message_text)
     TeamMessage.create(message: message, team: hint_request.team)
   end
 end
