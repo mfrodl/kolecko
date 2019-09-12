@@ -1,0 +1,10 @@
+%h1 Odeslat zprávu týmům
+
+= form_for @message, url: {action: 'create'} do |form|
+  .field
+    = form.label :text, 'Zpráva'
+    %br
+    = form.text_field :text
+
+  .actions
+    = form.submit 'Odeslat'

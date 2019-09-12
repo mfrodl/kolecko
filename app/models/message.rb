@@ -1,13 +1,9 @@
 class Message < ApplicationRecord
   has_many :team_messages
 
-  after_create do |message|
-    create_team_messages(message)
-  end
-
-  def create_team_messages(message)
+  def create_team_messages
     Team.all.each do |team|
-      TeamMessage.create(team: team, message: message)
+      TeamMessage.create(team: team, message: self)
     end
   end
 end

@@ -20,6 +20,9 @@
     .menu.closed
       %ul.main-menu
         - if team_signed_in?
+          - if current_team.admin?
+            = submenu('Admin', 'fas fa-user-cog') do
+              = submenu_item('Odeslat zprávu týmům', new_message_path)
           /= = submenu(t(:visits), 'fa fa-map-signs') do
           /=   = submenu_item(t(:new_visit), new_visit_path)
           /=   = submenu_item('Příchody a odchody', visits_path)

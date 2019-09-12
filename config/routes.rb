@@ -15,7 +15,6 @@ Rails.application.routes.draw do
 
   resources :teams, path: 'tymy'
 
-  get '/inbox', to: 'messages#index'
   get '/ocoins', to: 'ocoin_transactions#index'
   get '/pruchod/hlavni', to: 'puzzles#main'
   post '/pruchod/hlavni/odkryt', to: 'unlocked_mains#new'
@@ -26,6 +25,9 @@ Rails.application.routes.draw do
   scope(path_names: {new: 'nova', edit: 'upravit'}) do
     resources :answers, path: 'odpovedi', only: [:index, :new, :create]
     resources :puzzles, path: 'sifry', only: [:index]
+
+    resources :messages, path: 'zpravy'
+    get '/inbox', to: 'messages#index'
 
     resources :hint_requests, path: 'napovedy' do
       collection do
