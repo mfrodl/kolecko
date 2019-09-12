@@ -1,6 +1,4 @@
 class UnlockedMainsController < ApplicationController
-  skip_before_action :authenticate_team!
-
   def new
     #FIXME: this should probably be in some global defines
     main_puzzle_prize = 150
