@@ -1,13 +1,3 @@
-class BalanceValidator < ActiveModel::Validator
-  def validate(record)
-    if record.team.points < 0
-      message = "Pro tuto akci nemáte dostatek OCoinů " \
-                "(#{I18n.t(:ocoins, count: record.team.points_was)} k dispozici)"
-      record.errors.add(:base, message)
-    end
-  end
-end
-
 class CancelValidator < ActiveModel::Validator
   def validate(record)
     has_opened_hints = record.hints.where(opened: true).exists?
@@ -24,7 +14,12 @@ class HintRequest < ApplicationRecord
   has_one :puzzle, through: :visit
   has_many :hints, dependent: :destroy
 
-  validates_with BalanceValidator, CancelValidator
+  validates :bounty, presence: true
+  validates_with CancelValidator
+
+  before_validation do
+    team.points -= bounty - bounty_was
+  end
 
 # this is probably something I don't want
 #  before_save do

@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20190909201239) do
     t.text "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "bounty"
+    t.integer "bounty", default: 0
     t.boolean "cancelled", default: false, null: false
     t.boolean "closed", default: false, null: false
     t.bigint "visit_id"
@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 20190909201239) do
     t.text "message"
     t.datetime "created_at", default: -> { "now()" }, null: false
     t.datetime "updated_at", default: -> { "now()" }, null: false
-    t.bigint "type"
     t.bigint "team_id"
   end
 

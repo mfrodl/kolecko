@@ -33,4 +33,9 @@ class Hint < ApplicationRecord
   before_save prepend: true do
     self.hint_request.closed = true if self.opened?
   end
+
+  after_create do
+    message = Message.new(text: 'Nová nápověda')
+    TeamMessage.create(message: message, team: hint_request.team)
+  end
 end

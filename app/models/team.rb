@@ -1,3 +1,13 @@
+class BalanceValidator < ActiveModel::Validator
+  def validate(record)
+    if record.points < 0
+      message = "Pro tuto akci nemáte dostatek OCoinů " \
+                "(#{I18n.t(:ocoins, count: record.points_was)} k dispozici)"
+      record.errors[:base] << message
+    end
+  end
+end
+
 class Team < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -20,6 +30,7 @@ class Team < ApplicationRecord
     with: /\A[0-9]{9}\z/,
     message: 'je v neplatném formátu'
   }
+  validates_with BalanceValidator
 
   def email_required?
     false

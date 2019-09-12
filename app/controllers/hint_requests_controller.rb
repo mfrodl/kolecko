@@ -41,16 +41,7 @@ class HintRequestsController < ApplicationController
       return
     end
 
-    if @visit.hint_requests.where(closed: false).any?
-      flash[:alert] = 'U této šifry jste již požádali o nápovědu. ' + \
-                      'Chcete-li požádat znovu, je nutné nejdříve zrušit ' + \
-                      'aktivní žádosti.'
-      redirect_to hint_requests_path
-      return
-    end
-
     @hint_request.visit = @visit
-    @hint_request.team.points -= @hint_request.bounty
 
     if @hint_request.save
       flash[:success] = 'Žádost úspěšně odeslána'
@@ -77,12 +68,10 @@ class HintRequestsController < ApplicationController
     if @hint_request.team != current_team
       flash[:alert] = 'Nemáte právo k úpravě této nápovědy'
     else
-      increase = hint_request_params[:bounty].to_f - @hint_request.bounty
-      if current_team.points >= increase
-        @hint_request.bounty = hint_request_params[:bounty]
-        @hint_request.save
-        current_team.points -= increase
-        current_team.save
+      @hint_request.bounty = hint_request_params[:bounty]
+
+      if @hint_request.save
+        increase = hint_request_params[:bounty].to_f - @hint_request.bounty
         ot = OcoinTransaction.new(team: current_team, points: -increase,
                                   message: 'Navýšení žádosti o nápovědu pro šifru %s' \
                                   % @hint_request.visit.puzzle.name)

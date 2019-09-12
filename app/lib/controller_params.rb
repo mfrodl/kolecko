@@ -12,6 +12,10 @@ module ControllerParams
       params.require(:hint).permit(:text, :rating, :hint_request_id)
     end
 
+    def message_params
+      params.require(:message).permit(:text)
+    end
+
     def puzzle_params
       params.require(:puzzle).permit(:code)
     end
