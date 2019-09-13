@@ -12,6 +12,7 @@ class Hint < ApplicationRecord
   belongs_to :from_team, foreign_key: :team_id, class_name: 'Team', autosave: true
   belongs_to :hint_request, autosave: true
   has_one :to_team, through: :hint_request, source: :team, autosave: true
+  has_one :puzzle, through: :hint_request
 
   validates :text, presence: true, allow_blank: false
   validates :rating, numericality: { greater_than_or_equal_to: 1,

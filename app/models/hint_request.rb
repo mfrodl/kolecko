@@ -9,6 +9,8 @@ class CancelValidator < ActiveModel::Validator
 end
 
 class HintRequest < ApplicationRecord
+  include ActionView::Helpers::UrlHelper
+
   belongs_to :visit
   has_one :team, through: :visit, autosave: true
   has_one :puzzle, through: :visit
@@ -26,4 +28,19 @@ class HintRequest < ApplicationRecord
 #    self.closed = true if self.cancelled?
 #  end
 
+  after_create do
+    message_text = "Nová žádost o nápovědu k šifře "
+    message_text << link_to(puzzle.full_name,
+                            Rails.application.routes.url_helpers.queue_hint_requests_path)
+    message = Message.new(text: message_text)
+
+    Visit.where(puzzle: puzzle).where.not(solved_at: nil).each do |solved_visit|
+      hints_for_puzzle_by_team = Hint.joins(:from_team, :puzzle).
+                                      where(teams: { id: solved_visit.team_id },
+                                            puzzles: { id: solved_visit.puzzle_id })
+      unless hints_for_puzzle_by_team.any?
+        TeamMessage.create(message: message, team: solved_visit.team)
+      end
+    end
+  end
 end
