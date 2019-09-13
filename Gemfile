@@ -24,6 +24,10 @@ gem 'rails-i18n', '~> 5.1.2'
 
 gem 'font-awesome-sass', '~> 5.0.9'
 
+gem 'whenever', '~> 1.0.0'
+
+gem 'geo_coord'
+
 # Deploy with Capistrano
 group :development do
   gem 'brakeman', require: false
