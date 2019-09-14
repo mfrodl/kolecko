@@ -39,12 +39,16 @@ function addMapPoint(longitude, latitude, icon) {
   map.addLayer(vectorLayer);
 }
 
-function addOpenPuzzlePoint(longitude, latitude) {
-  addMapPoint(longitude, latitude, "<%= asset_path 'open_puzzle.svg' %>");
+function addFinalPuzzlePoint(longitude, latitude) {
+  addMapPoint(longitude, latitude, "<%= asset_path 'final_puzzle.svg' %>");
 }
 
-function addVisitedPuzzlePoint(longitude, latitude) {
-  addMapPoint(longitude, latitude, "<%= asset_path 'visited_puzzle.svg' %>");
+function addMainPuzzlePoint(longitude, latitude) {
+  addMapPoint(longitude, latitude, "<%= asset_path 'main_puzzle.svg' %>");
+}
+
+function addSecondaryPuzzlePoint(longitude, latitude) {
+  addMapPoint(longitude, latitude, "<%= asset_path 'secondary_puzzle.svg' %>");
 }
 
 function addSolvedPuzzlePoint(longitude, latitude) {
@@ -75,16 +79,17 @@ $(document).on('turbolinks:load', function() {
       dataType: 'json',
       success: function(result) {
         for (let puzzle of result.puzzles) {
-          if (puzzle.visited) {
-            if (puzzle.solved) {
-              addSolvedPuzzlePoint(puzzle.longitude, puzzle.latitude);
-            }
-            else {
-              addVisitedPuzzlePoint(puzzle.longitude, puzzle.latitude);
-            }
+          if (puzzle.solved) {
+            addSolvedPuzzlePoint(puzzle.longitude, puzzle.latitude);
+          }
+          else if (puzzle.finish) {
+            addFinalPuzzlePoint(puzzle.longitude, puzzle.latitude);
+          }
+          else if (puzzle.main) {
+            addMainPuzzlePoint(puzzle.longitude, puzzle.latitude);
           }
           else {
-            addOpenPuzzlePoint(puzzle.longitude, puzzle.latitude);
+            addSecondaryPuzzlePoint(puzzle.longitude, puzzle.latitude);
           }
         }
       }

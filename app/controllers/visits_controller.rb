@@ -7,10 +7,22 @@ class VisitsController < ApplicationController
 
   def map
     @open_puzzles = Puzzle.where('? BETWEEN opens_at AND closes_at', Time.now)
+    @main_puzzles = UnlockedMain.where(team: current_team).map(&:puzzle)
     @visited_puzzles = Visit.where(team: current_team).map(&:puzzle)
     @solved_puzzles = Visit.where(team: current_team)
                            .where.not(solved_at: nil)
                            .map(&:puzzle)
+
+    if current_team.unlocked_final?
+      @final_puzzles = Puzzle.where(puztype: 'final')
+    else
+      @final_puzzles = []
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render layout: false }
+    end
   end
 
   def new

@@ -60,4 +60,8 @@ class Team < ApplicationRecord
     clean_up_passwords
     result
   end
+
+  def unlocked_final?
+    solved_main_puzzles == Puzzle.where(puztype: 'main').count
+  end
 end
