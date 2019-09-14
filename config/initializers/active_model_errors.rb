@@ -1,9 +1,9 @@
 class ActiveModel::Errors
-    def full_message(attribute, message)
-      if attribute == :base || attribute.to_s.ends_with?('.base') then
-        return message
-      else
-        return super
-      end
+  def self.full_message(attribute, message)
+    if attribute == :base || attribute.to_s.ends_with?('.base') then
+      message
+    else
+      super
     end
+  end
 end

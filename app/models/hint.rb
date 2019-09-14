@@ -7,6 +7,8 @@ class FrozenRatingValidator < ActiveModel::Validator
 end
 
 class Hint < ApplicationRecord
+  include ActionView::Helpers::UrlHelper
+
   belongs_to :from_team, foreign_key: :team_id, class_name: 'Team', autosave: true
   belongs_to :hint_request, autosave: true
   has_one :to_team, through: :hint_request, source: :team, autosave: true
