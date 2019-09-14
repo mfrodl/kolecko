@@ -35,10 +35,16 @@ class HintRequest < ApplicationRecord
     message = Message.new(text: message_text)
 
     Visit.where(puzzle: puzzle).where.not(solved_at: nil).each do |solved_visit|
+      # Hints for this puzzle sent by given team
       hints_for_puzzle_by_team = Hint.joins(:from_team, :puzzle).
                                       where(teams: { id: solved_visit.team_id },
                                             puzzles: { id: solved_visit.puzzle_id })
-      unless hints_for_puzzle_by_team.any?
+      # Hints for the requesting team and this puzzle sent by given team
+      hints_for_visit_by_team = Hint.joins(:from_team, hint_request: :visit).
+                                     where(teams: { id: solved_visit.team_id },
+                                           visits: { id: visit.id },
+                                           opened: true)
+      if hints_for_puzzle_by_team.count < 2 && hints_for_visit_by_team.empty?
         TeamMessage.create(message: message, team: solved_visit.team)
       end
     end
