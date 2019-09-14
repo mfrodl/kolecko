@@ -6,7 +6,8 @@ class VisitsController < ApplicationController
   end
 
   def map
-    @open_puzzles = Puzzle.where('? BETWEEN opens_at AND closes_at', Time.now)
+    @open_puzzles = Puzzle.where(puztype: 'secondary').
+                           where('? BETWEEN opens_at AND closes_at', Time.now)
     @main_puzzles = UnlockedMain.where(team: current_team).map(&:puzzle)
     @visited_puzzles = Visit.where(team: current_team).map(&:puzzle)
     @solved_puzzles = Visit.where(team: current_team)
@@ -18,6 +19,8 @@ class VisitsController < ApplicationController
     else
       @final_puzzles = []
     end
+
+    @puzzles = @open_puzzles + @main_puzzles + @final_puzzles
 
     respond_to do |format|
       format.html

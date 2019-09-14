@@ -82,7 +82,7 @@ $(document).on('turbolinks:load', function() {
           if (puzzle.solved) {
             addSolvedPuzzlePoint(puzzle.longitude, puzzle.latitude);
           }
-          else if (puzzle.finish) {
+          else if (puzzle.final) {
             addFinalPuzzlePoint(puzzle.longitude, puzzle.latitude);
           }
           else if (puzzle.main) {

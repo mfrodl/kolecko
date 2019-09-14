@@ -1,4 +1,4 @@
-json.puzzles @open_puzzles do |puzzle|
+json.puzzles @puzzles do |puzzle|
   json.latitude puzzle.latitude
   json.longitude puzzle.longitude
   json.final @final_puzzles.include? puzzle
