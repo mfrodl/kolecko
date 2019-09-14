@@ -15,7 +15,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 (unknown)"
-   sodipodi:docname="visited_puzzle.svg">
+   sodipodi:docname="open_puzzle.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6568543"
-     inkscape:cx="-85.614812"
-     inkscape:cy="32.00391"
+     inkscape:zoom="22.627417"
+     inkscape:cx="6.3786055"
+     inkscape:cy="6.9524994"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -54,7 +54,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -64,7 +64,7 @@
      id="layer1"
      transform="translate(0,-290.64999)">
     <ellipse
-       style="fill:#000000;stroke-width:0.35277799;fill-opacity:1"
+       style="fill:#aa0000;stroke-width:0.35277799;fill-opacity:1"
        id="path3717"
        cx="3.175"
        cy="293.82498"
@@ -82,7 +82,7 @@
        id="path3713"
        cx="3.175"
        cy="293.82498"
-       style="fill:#000000;stroke-width:0.21709397;fill-opacity:1"
+       style="fill:#aa0000;stroke-width:0.21709397"
        rx="1.5875"
        ry="1.5874993" />
   </g>

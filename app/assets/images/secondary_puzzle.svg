@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="5.6568543"
-     inkscape:cx="7.9429434"
+     inkscape:cx="30.587496"
      inkscape:cy="5.3486098"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -37,11 +37,11 @@
      inkscape:snap-center="false"
      inkscape:snap-object-midpoints="false"
      inkscape:bbox-nodes="true"
-     inkscape:window-width="460"
-     inkscape:window-height="403"
-     inkscape:window-x="966"
-     inkscape:window-y="1130"
-     inkscape:window-maximized="0">
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="817"
+     inkscape:window-maximized="1">
     <inkscape:grid
        type="xygrid"
        id="grid3715" />
@@ -54,7 +54,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -64,7 +64,7 @@
      id="layer1"
      transform="translate(0,-290.64999)">
     <ellipse
-       style="fill:#b3b3b3;stroke-width:0.35277799;fill-opacity:1"
+       style="fill:#ff7f2a;stroke-width:0.35277799;fill-opacity:1"
        id="path3717"
        cx="3.175"
        cy="293.82498"
@@ -82,7 +82,7 @@
        id="path3713"
        cx="3.175"
        cy="293.82498"
-       style="fill:#b3b3b3;stroke-width:0.21709397;fill-opacity:1"
+       style="fill:#ff7f2a;stroke-width:0.21709397;fill-opacity:1"
        rx="1.5875"
        ry="1.5874993" />
   </g>
