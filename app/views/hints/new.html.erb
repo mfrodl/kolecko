@@ -4,7 +4,7 @@
   <%= form.hidden_field :hint_request_id, value: params[:id] %>
   <div class="field">
     <%= form.label :text, 'Text nápovědy' %><br>
-    <%= form.text_field :text %>
+    <%= text_field_tag 'text', nil, :maxlength => 20, :size => 20 %>
   </div>
 
   <div class="actions">
