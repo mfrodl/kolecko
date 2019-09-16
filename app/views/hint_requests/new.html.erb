@@ -11,7 +11,7 @@
 
     <div class="field">
       <%= form.label :note, 'Poznámka' %><sup>*</sup><br>
-      <%= text_field_tag 'note', nil, :maxlength => 20, :size => 20 %>
+      <%= form.text_field :note, :maxlength => 20, :size => 20 %>
     </div>
 
     <div class="field">
