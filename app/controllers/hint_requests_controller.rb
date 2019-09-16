@@ -88,6 +88,12 @@ class HintRequestsController < ApplicationController
       return
     end
 
+    if @visit.hint_requests.where(closed: false).any?
+      flash[:alert] = 'K této šifře již máte otevřenou žádost o nápovědu'
+      redirect_to hint_requests_path
+      return
+    end
+
     @hint_request.visit = @visit
 
     if @hint_request.save
