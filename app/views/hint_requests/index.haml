@@ -1,4 +1,4 @@
-%h1 Nápovědy
+%h1 Moje žádosti a přijaté nápovědy
 - unless @hint_requests.empty?
   %table.table
     %tr
@@ -10,7 +10,7 @@
       %tr
         %td= hint_request.puzzle.full_name
         %td= hint_request.note
-        %td= t(:points, count: hint_request.bounty)
+        %td= t(:ocoins, count: hint_request.bounty)
         %td
           - if hint_request.cancelled
             Žádost zrušena

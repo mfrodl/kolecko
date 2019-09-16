@@ -35,7 +35,7 @@
               = submenu_item(t(:my_answers), answers_path)
             = submenu(t(:hints), 'fa fa-question-circle') do
               = submenu_item('Požádat o nápovědu', new_hint_request_path)
-              = submenu_item('Přijaté nápovědy', hint_requests_path)
+              = submenu_item('Žádosti a přijaté nápovědy', hint_requests_path)
               = submenu_item('Poslat nápovědu jinému týmu', queue_hint_requests_path)
             = menu_item(t(:map), map_path, 'fa fa-map')
           = menu_item('Tým', team_path(current_team), 'fa fa-user')
