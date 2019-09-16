@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190909201239) do
+ActiveRecord::Schema.define(version: 20190916112106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +141,8 @@ ActiveRecord::Schema.define(version: 20190909201239) do
     t.datetime "solved_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "orghint", default: false, null: false
+    t.boolean "dead", default: false, null: false
     t.index ["puzzle_id"], name: "index_visits_on_puzzle_id"
     t.index ["team_id", "puzzle_id"], name: "index_visits_on_team_id_and_puzzle_id", unique: true
     t.index ["team_id"], name: "index_visits_on_team_id"

@@ -1,5 +1,5 @@
 <h1>Požádat o nápovědu</h1>
-
+<h2>P2P nápovědy</h2>
 <% if not @unsolved_puzzles.empty? %>
   <%= form_for @hint_request, url: {action: 'create'} do |form| %>
     <%= fields_for :puzzle, @hint_request.puzzle do |puzzle_fields| %>
@@ -10,8 +10,8 @@
     <% end %>
 
     <div class="field">
-      <%= form.label :note, 'Poznámka' %><br>
-      <%= form.text_field :note %>
+      <%= form.label :note, 'Poznámka' %><sup>*</sup><br>
+      <%= text_field_tag 'note', nil, :maxlength => 20, :size => 20 %>
     </div>
 
     <div class="field">
@@ -22,7 +22,49 @@
     <div class="actions">
       <%= form.submit 'Odeslat' %>
     </div>
+    <sup>*</sup>Můžete upřesnit pro napovídající týmy v jakém stavu s luštěním jste, např. "nevím nic" nebo "poslední krok", max 20 znaků.
   <% end %>
+
 <% else %>
   Nemáte žádnou vyzvednutou ale nevyluštěnou šifru.
 <% end %>
+
+<h2>Nápověda od orgů</h2>
+<% if not @possible_org_hint.empty? %>
+  <%= form_for @hint_request, url: hintorg_path do |form| %>
+    <%= fields_for :puzzle, @hint_request.puzzle do |puzzle_fields| %>
+      <div class="select">
+        <%= puzzle_fields.label :code, 'Název šifry'%><br>
+        <%= puzzle_fields.select :code, @possible_org_hint %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= form.submit 'Požádat o nápovědu orgy' %>
+    </div>
+  <% end %>
+
+<% else %>
+  Žádná z vašich šifer nesplňuje požadavky pro nápovědu od orgů (hlavní nebo cílová šifra, min. hodina od příchodu na stanoviště a min. 30 OC utraceno za P2P nápovědy)
+<% end %>
+
+<h2>Požádat o dead</h2>
+<% if not @possible_dead.empty? %>
+  <%= form_for @hint_request, url: dead_path do |form| %>
+    <%= fields_for :puzzle, @hint_request.puzzle do |puzzle_fields| %>
+      <div class="select">
+        <%= puzzle_fields.label :code, 'Název šifry'%><br>
+        <%= puzzle_fields.select :code, @possible_dead %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= form.submit 'Požádat o dead šifry' %>
+    </div>
+  <% end %>
+
+<% else %>
+  Žádná z vašich šifer nesplňuje požadavky pro dead (hlavní nebo cílová šifra, min. dvě hodiny od příchodu na stanoviště a min. 50 OC utraceno za P2P nápovědy)
+<% end %>
+
+

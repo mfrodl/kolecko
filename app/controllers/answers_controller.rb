@@ -48,7 +48,7 @@ class AnswersController < ApplicationController
                 @hint_request.cancelled = true
                 count = @hint_request.hints.count
                 # If no hint was received, just return 70% of the points to the team
-                if count == 0
+                if count == 0 && @hint_request.visit.dead == false && @hint_request.visit.orghint == false
                   amount = @hint_request.bounty * 7 / 10
                   current_team.points += amount
                   ot = OcoinTransaction.new(team: current_team, points: amount,

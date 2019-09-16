@@ -6,6 +6,39 @@ class HintRequestsController < ApplicationController
                                  where(visits: { team: current_team })
   end
 
+  def dead
+    p = Puzzle.find_by_code(puzzle_params[:code])
+    v = Visit.find_by(puzzle: p, team: current_team)
+    if v.dead || v.solved_at
+      flash[:alert] = "Tuto šifru jste již deadovali nebo vyřešili"
+    else
+      # FIXME: do we want to mark it solved directly or
+      # just show the solution and let the teams still do it 
+      v.dead = true
+      v.save
+      flash[:success] = "Dead zaznamenán, nyní můžete zavolat orgům o princip řešení"
+    end
+
+    redirect_to new_hint_request_path
+  end
+
+  def request_org_hint
+    p = Puzzle.find_by_code(puzzle_params[:code])
+    v = Visit.find_by(puzzle: p, team: current_team)
+    if v.orghint
+      flash[:alert] = "Již jste žádali dříve o nápovědu od orgů."
+    else
+      # FIXME: do we want to mark it solved directly or
+      # just show the solution and let the teams still do it
+      # in other words should this create a solution automatically?
+      v.orghint = true
+      v.save
+      flash[:success] = "Zaznamenáno, nyní můžete zavolat orgům o nápovědu"
+    end
+    
+    redirect_to new_hint_request_path
+  end
+
   def queue
    @hint_requests = HintRequest.joins(:visit).
                                 where.not(visits: { team: current_team },
@@ -17,9 +50,23 @@ class HintRequestsController < ApplicationController
     @hint_request = HintRequest.new
     unsolved_visits = current_team.visits.where(solved_at: [nil])
     @unsolved_puzzles = []
+    @possible_org_hint = []
+    @possible_dead = []
     unsolved_visits.each do |v|
       if v.puzzle.solutions.count == 1
         @unsolved_puzzles << [v.puzzle.full_name, v.puzzle.code]
+      end
+      if v.puzzle.puztype == 'main' || v.puzzle.puztype == 'final'
+        spent = 0
+        v.hint_requests.each do |h|
+          spent += h.bounty
+        end
+        if spent >= 30 && Time.now - v.created_at > 3600 && v.orghint == false
+          @possible_org_hint << [v.puzzle.full_name, v.puzzle.code]
+        end
+        if spent >= 50 && Time.now - v.created_at > 7200 && v.dead == false
+          @possible_dead << [v.puzzle.full_name, v.puzzle.code]
+        end
       end
     end
   end

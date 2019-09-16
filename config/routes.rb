@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get '/ocoins', to: 'ocoin_transactions#index'
   get '/pruchod/hlavni', to: 'puzzles#main'
   post '/pruchod/hlavni/odkryt', to: 'unlocked_mains#new'
+  post '/dead', to: 'hint_requests#dead'
+  post '/hintorg', to: 'hint_requests#request_org_hint'
 
   resources :visits, path: 'pruchod', only: [:index, :new, :create], path_names: {new: 'zadat'}
   get '/mapa', to: 'visits#map', as: :map
