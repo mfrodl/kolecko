@@ -30,7 +30,7 @@ class UnlockedMainsController < ApplicationController
 
     # now select one at random
     # maybe just pick in order, the previous code could be simplified than
-    puzzle = locked_mains.sample
+    puzzle = locked_mains.first
     main = UnlockedMain.new(team: current_team, puzzle: puzzle)
 
     if locked_mains.count == 0
