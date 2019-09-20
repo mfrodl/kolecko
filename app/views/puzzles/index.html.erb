@@ -22,8 +22,10 @@
 <% @secondary_puzzles.each do |puzzle| %>
   <h3><%= puzzle.name %></h3>
   <p>
-  <em>Poloha: <%= puzzle.latitude %>N <%= puzzle.longitude %>E</em><br>
-  <em>Popis umístění: <%= puzzle.place %></em><br>
+  <% if puzzle.opens_at < Time.now && puzzle.closes_at > Time.now %>
+    <em>Poloha: <%= puzzle.latitude %>N <%= puzzle.longitude %>E</em><br>
+    <em>Popis umístění: <%= puzzle.place %></em><br>
+  <% end %>
   <em>Body za vyzvednutí: <%= puzzle.points %></em><br>
   <em>Otevírá: <%= puzzle.opens_at.strftime("%d.%m. %H:%M:%S") %></em><br>
   <em>Zavírá: <%= puzzle.closes_at.strftime("%d.%m. %H:%M:%S")%></em><br>
