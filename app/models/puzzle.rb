@@ -30,7 +30,7 @@ class Puzzle < ApplicationRecord
     newly_opened_puzzles = Puzzle.where(puztype: 'secondary', opened: false).
                                   where('opens_at <= ?', DateTime.now)
     newly_opened_puzzles.each do |puzzle|
-      message_text = "Byla otevřena nová vedlejší šifra na souřadnicích "
+      message_text = "Byla otevřena nová vedlejší šifra #{puzzle.name} na souřadnicích "
       message_text << link_to(Geo::Coord.new(puzzle.latitude, puzzle.longitude).to_s,
                               Rails.application.routes.url_helpers.map_path)
       message = Message.new(text: message_text)
