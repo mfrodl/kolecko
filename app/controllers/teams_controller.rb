@@ -42,7 +42,10 @@ class TeamsController < ApplicationController
   end
 
   def results
-    @teams = Team.order(solved_final_puzzle: :desc, solved_main_puzzles: :desc, points: :desc)
+    @teams = Team.where(admin: false).
+                  order(solved_final_puzzle: :desc,
+                        solved_main_puzzles: :desc,
+                        points: :desc)
   end
 
   private
