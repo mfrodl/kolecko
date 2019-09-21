@@ -17,7 +17,7 @@ class HintRequest < ApplicationRecord
   has_many :hints, dependent: :destroy
 
   validates :bounty, presence: true
-  validates_with CancelValidator
+  validates_with CancelValidator, TimeValidator
 
   before_validation do
     team.points -= bounty - bounty_was

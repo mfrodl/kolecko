@@ -7,6 +7,7 @@ class Visit < ApplicationRecord
   has_many :hints, through: :hint_requests
 
   validates :puzzle, uniqueness: { scope: :team }
+  validates_with TimeValidator
 
   before_save do
     total_solutions = puzzle.solutions.count

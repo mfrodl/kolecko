@@ -24,7 +24,7 @@ class Answer < ApplicationRecord
   validates :solution, uniqueness: { scope: :visit,
                                      allow_blank: true,
                                      message: 'již odesláno' }
-  validates_with HintValidator
+  validates_with HintValidator, TimeValidator
 
   accepts_nested_attributes_for :puzzle
 

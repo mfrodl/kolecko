@@ -19,7 +19,7 @@ class Hint < ApplicationRecord
                                      less_than_or_equal_to: 5,
                                      allow_nil: true }
 
-  validates_with FrozenRatingValidator
+  validates_with FrozenRatingValidator, TimeValidator
 
   def open
     self.opened = true
