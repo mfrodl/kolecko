@@ -21,7 +21,7 @@ class Team < ApplicationRecord
   has_many :hint_requests, through: :visits
   has_many :received_hints, through: :hint_requests, source: :hints
   has_many :sent_hints, class_name: 'Hint'
-  has_many :team_messages
+  has_many :team_messages, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
   validates_presence_of :player1_name, :player1_email

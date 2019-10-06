@@ -1,7 +1,7 @@
 class Visit < ApplicationRecord
   belongs_to :team
   belongs_to :puzzle
-  has_many :answers
+  has_many :answers, dependent: :destroy
   has_many :hint_requests
   has_many :solutions, through: :answers
   has_many :hints, through: :hint_requests
