@@ -43,24 +43,31 @@ Pokud takto najdeme chybu v každé z pěti podšifer, dostaneme heslo KAVKA.
 <h2 class="puzzle_name">iKolečkOS - vedlejší šifra</h2>
 
 <p class="puzzle_description">
-U stanoviště této šifry byl na plotě papír s mírně zakódovaným logem Bluetooth.
-Po zapnutí Bluetooth se týmům zobrazilo zařízení Kolecko-rpi a po spárování jim byla přes Bluetooth 
+U stanoviště této šifry byl na plotě papír s obrazcem v němž bylo schováno logo Bluetooth.
+Po zapnutí Bluetooth se týmům zobrazilo zařízení Kolecko-rpi a po spárování jim byla přes Bluetooth poslána html soubor
+se šifrou. Ta běžela v javascriptu v prohlížeči.
 </p>
-<p class="puzzle_download">Ke stažení: <a href="/iKolecko2019/sifra5.pdf" download>šifra č. 5</a></p>
+<p class="puzzle_download">Ke stažení: <a href="/iKolecko2019/iKoleckOS.html" target=new>iKolečkOS</a></p>
 
-<p class="hint_link" onclick="togglePuzzleHint('5')">Nápověda:</p>
-<p class="puzzle_hint" id="puzzle_hint_5">
-Kolik stěn má myší trasa? Náhoda? Nemyslím si!
+<p>
+K této šifře nebylo možné žádat o nápovědu. 
 </p>
 
 <p class="solution_link" onclick="togglePuzzleSolution('5')">Řešení:</p>
 <p class="puzzle_solution" id="puzzle_solution_5">
-Šifra se skládá z šesti papírových kostek, na šedých stranách jsou dvojice (Jágr - brusle, Popelka - oříšky), dále je na nich myš a sýr, vyznačená trasa a pastičky.
-Kostky jde přiložit odpovídajícími šedými dvojicemi k sobě právě tak,
-aby mezi myší a sýrem vznikla cesta vyznačená čárami a aby tato cesta procházela celý povrch výsledného objektu.
-Výsledný objekt, kříž, má povrch přesně 26 čtverců.
-Do nich vepíšeme abecedu A-Z v pořadí jak jde myš k sýru.
-Řešení čteme v místě pastí, dle jejich velikosti: KURIM LSD.
+Jednotlivé podšifry jsou schovány následovně:<br>
+- Kotrola souborového systému: Než je souborový systém úplně opraven, je potřeba opakovat opravu 5x. Pokaždé je vynecháno jedno číslo na počítadle procent. Pokud čteme odpovídající písmena v abecedě, dostaneme heslo KOTEL.<br>
+- Admin heslo: Po třech pokusech se zobrazí nápověda "You force heaven to be empty", to je mnemotechnicky přepsané heslo "U472BMT". Po jeho zadání se zobrazí kód PIVOVAR.<br>
+- Nové vlastnosti: Při spuštění se nabízí úžasné nové vlastnosti systému. Pokud uživatel zvolí 3x určitě ano, získá heslo PLOTICE.<br>
+- Plocha: Na ploše roste tráva s tmavými a světlými lístky. To je morseovka, která dává heslo AUTOMOBIL.<br>
+- Spořič obrazovky: Spočič obrazovky průlet hvězdokupou, kde krom náhodně generovaných hvězd prolétávají i čtyři skutečná souhvězdí. Jsou to Malý vůz, Labuť, Orion a Kasipea. Jejich první písmena dají heslo MLOK.<br>
+- Nápověda: Čteme písmena psané malými kapitálkami: PAZOUREK (v prohlížečích s horší podporou pro Unicode se místo nich zobrazují čtverečky).<br>
+- Hledání min: Miny jsou pokaždé generovány na stejných místech, dále je možné si všimnout i tmavších čar vyznačujících větší skupiny 2x3 polí. Skupiny jsou písmena v Brailově písmu: OBKLADACKA.<br>
+- BSOD: Po pádu systému který nastane cca po 15-30 minutách můžeme najít ve výpisu paměti zapsané pomocí šestnástkové soustavy heslo SKLENICE.<br>
+- Aktualizace: Při instalaci aktualizací je zobrazen CVE kód pro každou bezpečnostní záplatu. Ten je podezřele malé číslo, řešení jsou pak odpovídající písmena v abecedě a heslo SMYCEC.<br>
+- Vypnutí: Po vypnutí systému se zobrazí heslo KRABICE.<br>
+- Prohlížeč: Po instalaci aktualizací se při pokusu o spuštění prohlížeče zobrazí heslo ANAKONDA.<br>
+- Soubor se šifrou: V aplikaci soubory je možné se proklikat k souboru sifra.txt. Dostat se k němu lze jen pokud byl opraven filesystém a uživatel je přihlášený jako admin. Soubor obsahuje divné řetězce znaků a písmen. Jedná se o md5 hash, řešení šifry je popsáno v předchozí video šifře Kurz šifrování. Heslo je pak LISTOPAD.
 </p>
 
 <h2 class="puzzle_name">5. Myš a sýr</h2>
