@@ -161,7 +161,8 @@ Zbytek šifry je řešen obdobně a dá řešení TUNEL.
 <p class="puzzle_description">
 Jak už je na Kolečku tradicí, i tento rok využívala jedna šifra VKV radiovou vysílačku.
 U Salesiánského střediska volného času v Žabovřeskách mohly týmy na zadané frekvenci naladit následující šifru:<br>
-<audio controls src="/iKolecko2019/kolecko_hitparada.mp3"></audio>
+<audio controls src="/iKolecko2019/kolecko_hitparada.mp3"></audio><br>
+Děkujeme Terezii Petruchové za namluvení šifry.
 </p>
 
 <p class="hint_link" onclick="togglePuzzleHint('8')">Vybrané P2P nápovědy:</p>
@@ -171,8 +172,9 @@ U Salesiánského střediska volného času v Žabovřeskách mohly týmy na zad
 
 <p class="solution_link" onclick="togglePuzzleSolution('8')">Řešení:</p>
 <p class="puzzle_solution" id="puzzle_solution_8">
-Hitparáda má pět písniček, každá písnička odkazuje na a jedno číslo: 3,1,4,1,5.
-Jsou tam nějaké zajímavé narážky, třeba že za prvním místem uděláme čárku, že někdo může mít jasno už po třech místech a že bychom mohli pokračovat do nekonečna.
+Hitparáda má pět písniček, každá písnička odkazuje na jedno číslo: 3,1,4,1,5.
+Jsou tam nějaké zajímavé narážky, třeba že za prvním místem uděláme čárku,
+že někdo může mít jasno už po třech místech a že bychom mohli pokračovat do nekonečna.
 Řešení je 3,1415... neboli Ludolfovo číslo PI.
 </p>
 
@@ -237,7 +239,7 @@ Vojta<br><br>
 Ahoj,<br>
 máte smůlu, tenhle emailový účet je plný spamu, takže si vaši zprávu asi nikdy nepřečtu. Nicméně pokud chcete nápovědu k morseovce, tak jak si asi myslíte, že by šla zakódovat, když jsme právě tři organizátoři...<br>
 Takže tak<br>
-Evžen<br>
+Evžen<br><br>
 
 Jednotlivé principy tedy jsou číst morseovku ze jmen orgů (dle členění textu na odstavce), číst čísla v textu a číst písmena s divným kerringem. Toto dá mezivýsledky STROJ, STROM a PTAK.
 Finální heslo je JEŘÁB.
@@ -250,17 +252,18 @@ Finální heslo je JEŘÁB.
 
 <p class="hint_link" onclick="togglePuzzleHint('11')">Vybrané P2P nápovědy:</p>
 <p class="puzzle_hint" id="puzzle_hint_11">
-Propojeni je poradi 
-TextyOdkazujiNaPosta
-Eng1PismenoPoporade
+- Propojeni je poradi<br>
+- TextyOdkazujiNaPosta<br>
+- Eng1PismenoPoporade
 </p>
 
 <p class="solution_link" onclick="togglePuzzleSolution('11')">Řešení:</p>
 <p class="puzzle_solution" id="puzzle_solution_11">
-Jednotlivé shluky slov odkazují na knihy. Velikost slova ve shluku odpovídá četnosti slova v dané knize (tzv. wordcloud).
+Jednotlivé shluky slov odkazují na knihy.
+Velikost slova ve shluku odpovídá četnosti slova v dané knize (tzv. wordcloud).
 Tvary wordcloudů jsou pak postavy z daných knih.
 Nicméně postava pokaždé patří k jiné knize (wordcloudu), tj. tímto způsobem všechny wordcloudy propojíme.
-Řešení čteme od Alenky, kde je vyznačen start a čteme první písmena jmen postav: ACROBATS.
+Řešení čteme od Alenky (Alice), kde je vyznačen start a čteme první písmena jmen postav: ACROBATS.
 <br>
 <img src="/iKolecko2019/heroes_reseni.png" style="width:100%; max-width:700px">
 </p>
@@ -273,12 +276,22 @@ Nicméně postava pokaždé patří k jiné knize (wordcloudu), tj. tímto způs
 
 <p class="hint_link" onclick="togglePuzzleHint('12')">Vybrané P2P nápovědy:</p>
 <p class="puzzle_hint" id="puzzle_hint_12">
-KolikSniDo1.Narazu
-Uz si narazil driv
-Pocitejte kalorie
+- KolikSniDo1.Narazu<br>
+- Uz si narazil driv<br>
+- Pocitejte kalorie
 </p>
 
 <p class="solution_link" onclick="togglePuzzleSolution('12')">Řešení:</p>
 <p class="puzzle_solution" id="puzzle_solution_12">
+Název šifry i grafika mají evokovat starou mobilní aplikace Snake (např. z Nokie 3310).
+Čísla a šipky dole udávají pohyb hada. Tj. kolik polí musíme ujet a jak pak zatáčíme.
+Pokud si projedeme všechny trasy (pokaždé ze stejného začátku), uvidíme, že had co této cestě pokaždé sežere několik kostek
+a konec instrukcí odpovídá nárazu do zdi.
+Pokud čteme písmena odpovídající počtu sežraných kostek dostamene NENARAZ.
+Nemáme tedy narazit, ale do čeho, když na konci se narazí pokaždé?
+V původní hře hráč prohrál nejen po nárazu do zdi, ale i po nárazu do sebe sama.
+Trasa, kterou had projíždí skutečně někdy kříží i sebe.
+Pokud tedy kontrolujeme aktuální délku hada v době křížení (prodlouží se o jedna za každou zkonzumovanou kostku)
+a čteme jen to co sežere před nárazem do sebe nebo stěny, dostaneme konečné řešení DEKANAT.
 
 </p>
