@@ -46,6 +46,7 @@
         = menu_item(t(:rules), rules_path, 'fa fa-gavel')
         = submenu('iKolečko 2019', 'fa fa-history') do
           = submenu_item(t(:puzzles_and_solutions), archive_puzzles_path('2019'))
+          = submenu_item('Statistiky šifer', archive_stats_path('2019'))
           = submenu_item(t(:results), archive_results_path('2019'))
         = submenu('KoleCZko 2018', 'fa fa-history') do
           = submenu_item(t(:teams), archive_teams_path('2018'))

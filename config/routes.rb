@@ -56,5 +56,6 @@ Rails.application.routes.draw do
     get '/tymy', to: 'pages#show', as: :archive_teams, page: 'teams'
     get '/pravidla', to: 'pages#show', as: :archive_rules, page: 'rules'
     get '/sifry', to: 'pages#show', as: :archive_puzzles, page: 'puzzles'
+    get '/statistiky', to: 'pages#show', as: :archive_stats, page: 'stats'
   end
 end
