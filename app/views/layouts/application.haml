@@ -41,13 +41,14 @@
           = menu_item(t(:puzzles_and_solutions), puzzles_path, 'fa fa-puzzle-piece')
           = menu_item(t(:results), results_path, 'fa fa-trophy')
         - else
-          = menu_item(t(:log_in), new_team_session_path, 'fas fa-sign-in-alt')
-          = menu_item(t(:sign_up), new_team_registration_path, 'fa fa-user-plus')
-        = menu_item(t(:rules), rules_path, 'fa fa-gavel')
+          /= menu_item(t(:log_in), new_team_session_path, 'fas fa-sign-in-alt')
+          /= menu_item(t(:sign_up), new_team_registration_path, 'fa fa-user-plus')
+        /= menu_item(t(:rules), rules_path, 'fa fa-gavel')
         = submenu('iKolečko 2019', 'fa fa-history') do
+          = submenu_item(t(:results), archive_results_path('2019'))
+          = submenu_item(t(:rules), archive_rules_path('2019'))
           = submenu_item(t(:puzzles_and_solutions), archive_puzzles_path('2019'))
           = submenu_item('Statistiky šifer', archive_stats_path('2019'))
-          = submenu_item(t(:results), archive_results_path('2019'))
         = submenu('KoleCZko 2018', 'fa fa-history') do
           = submenu_item(t(:teams), archive_teams_path('2018'))
           = submenu_item(t(:results), archive_results_path('2018'))
