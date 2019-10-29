@@ -18,7 +18,7 @@ gem 'jquery-rails', '~> 4.3.3'
 gem 'jquery-ui-rails', '~> 6.0.1'
 gem 'turbolinks', '~> 5'
 
-gem 'devise', '~> 4.4.3'
+gem 'devise', '~> 4.7.1'
 
 gem 'rails-i18n', '~> 5.1.2'
 
